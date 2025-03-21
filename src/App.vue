@@ -1,17 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-  <TestComponent prop="example"/>
+<!-- <TestComponent prop="example"/>-->
+<router-view></router-view>
 </template>
 
 <script>
 //import HelloWorld from './components/HelloWorld.vue'
-import TestComponent from './components/TestComponent.vue'
+//import TestComponent from './components/TestComponent.vue'
 export default {
   name: 'App',
   components: {
 //    HelloWorld,
-    TestComponent
+//    TestComponent
   }
 }
 </script>
