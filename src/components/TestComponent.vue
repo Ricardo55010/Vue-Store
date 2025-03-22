@@ -11,7 +11,7 @@
   </form>
   <div v-for="x in products" v-bind:key="x.name">
     {{ x }}
-    <button @click="deleteProduct(x)"></button>
+    <button @click="deleteProduct(x.id)"></button>
   </div>
 </template>
 <script>
@@ -36,9 +36,9 @@ export default {
       this.message = "New product created!";
       axios.post("http://localhost:8080/products",this.newProduct)
     },
-    deleteProduct() {
+    deleteProduct(x) {
       this.message = "product deleted!";
-      axios.delete("http://localhost:8080/products",this.newProduct)
+      axios.delete("http://localhost:8080/products/"+x)
     }
   },
   mounted(){
