@@ -6,9 +6,13 @@
     <input type="text" v-model="newProduct.name" >
     <input type="text" v-model="newProduct.quantity" >
     <input type="text" v-model="newProduct.description" >
+    <input type="text" v-model="newProduct.id" >
     <input type="submit">
   </form>
-  <div v-for="x in products" v-bind:key="x.name">{{ x }}</div>
+  <div v-for="x in products" v-bind:key="x.name">
+    {{ x }}
+    <button @click="deleteProduct(x)"></button>
+  </div>
 </template>
 <script>
 import axios from 'axios'
@@ -22,14 +26,19 @@ export default {
        newProduct: {
           name: "ejemplo",
           quantity: 1,
-          description: "ejemplo"
+          description: "ejemplo",
+          id: 1
        }
     };
   },
   methods: {
     postProduct() {
-      this.message = "You clicked the button!";
+      this.message = "New product created!";
       axios.post("http://localhost:8080/products",this.newProduct)
+    },
+    deleteProduct() {
+      this.message = "product deleted!";
+      axios.delete("http://localhost:8080/products",this.newProduct)
     }
   },
   mounted(){
