@@ -3,7 +3,9 @@
   <p>{{name}}</p>
   <p>{{message }}</p>
   <form v-on:submit="postProduct">
-    <input type="text" >
+    <input type="text" v-model="newProduct.name" >
+    <input type="text" v-model="newProduct.quantity" >
+    <input type="text" v-model="newProduct.description" >
     <input type="submit">
   </form>
   <div v-for="x in products" v-bind:key="x.name">{{ x }}</div>
