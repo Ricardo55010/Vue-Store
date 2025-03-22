@@ -6,6 +6,7 @@
     <input type="text" >
     <input type="submit">
   </form>
+  <div v-for="x in products" v-bind:key="x.name">{{ x }}</div>
 </template>
 <script>
 import axios from 'axios'
@@ -14,7 +15,8 @@ export default {
     data() {
     return {
        name: "Nope",
-       message: ""
+       message: "",
+       products: ""
     };
   },
   methods: {
@@ -26,7 +28,10 @@ export default {
   mounted(){
         this.name = "Richard"
         axios.get("http://localhost:8080/products")
-        .then(res=> console.log(res.data))
+        .then(res=> {
+          console.log(res.data)
+          this.products = res.data
+        })
   },
     name: 'HelloWorld',
     props: {
