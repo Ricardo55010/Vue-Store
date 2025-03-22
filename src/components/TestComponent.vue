@@ -2,7 +2,7 @@
   <h1>TestPage</h1>
   <p>{{name}}</p>
   <p>{{message }}</p>
-  <form v-on:submit="updateMessage">
+  <form v-on:submit="postProduct">
     <input type="text" >
     <input type="submit">
   </form>
@@ -16,13 +16,18 @@ export default {
     return {
        name: "Nope",
        message: "",
-       products: ""
+       products: "",
+       newProduct: {
+          name: "ejemplo",
+          quantity: 1,
+          description: "ejemplo"
+       }
     };
   },
   methods: {
-    updateMessage() {
+    postProduct() {
       this.message = "You clicked the button!";
-      
+      axios.post("http://localhost:8080/products",this.newProduct)
     }
   },
   mounted(){
