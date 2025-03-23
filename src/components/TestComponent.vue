@@ -2,6 +2,7 @@
   <h1>TestPage</h1>
   <p>{{name}}</p>
   <p>{{message }}</p>
+  <p>{{this.$store.state.count }}</p>
   <form v-on:submit="postProduct">
     <input type="text" v-model="newProduct.name" >
     <input type="text" v-model="newProduct.quantity" >
@@ -35,6 +36,8 @@ export default {
     postProduct() {
       this.message = "New product created!";
       axios.post("http://localhost:8080/products",this.newProduct)
+      this.$store.commit('increment')
+      console.log("projects created: " +this.$store.state.count)
     },
     deleteProduct(x) {
       this.message = "product deleted!";
