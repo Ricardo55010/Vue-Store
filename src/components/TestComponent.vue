@@ -12,7 +12,7 @@
   </form>
   <div v-for="x in products" v-bind:key="x.name">
     {{ x }}
-    <button @click="deleteProduct(x)"></button>
+    <v-btn @click="deleteProduct(x)"></v-btn>
   </div>
 </template>
 <script>
