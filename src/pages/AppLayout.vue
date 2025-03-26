@@ -1,10 +1,10 @@
 <template>
     <v-app>
-      <v-app-bar app>
+      <v-app-bar app color="grey-darken-4">
         <v-btn
-            color="primary"
+            icon="mdi-menu"
             @click.stop="drawer = !drawer">
-            Drawer
+            
         </v-btn>
       </v-app-bar>
 
@@ -12,7 +12,8 @@
 
         <v-navigation-drawer
           v-model="drawer"
-          temporary>
+          temporary
+          color="blue-grey-darken-4">
 
           <v-list-item
             prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import '@mdi/font/css/materialdesignicons.css'
 export default {
   name: 'AppLayout',
   props: {
