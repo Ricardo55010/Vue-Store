@@ -1,15 +1,11 @@
 
 <template>
+
 <AppLayout></AppLayout>
- <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-<!-- <TestComponent prop="example"/>-->
-<router-view></router-view>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
-//import TestComponent from './components/TestComponent.vue'
-import AppLayout from './components/Layout/AppLayout.vue';
+import AppLayout from './pages/AppLayout.vue';
 export default {
   name: 'App',
   components: {

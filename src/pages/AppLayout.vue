@@ -1,0 +1,78 @@
+<template>
+    <v-app>
+      <v-app-bar app>
+        <v-btn
+            color="primary"
+            @click.stop="drawer = !drawer">
+            Drawer
+        </v-btn>
+      </v-app-bar>
+
+      <v-layout>
+
+        <v-navigation-drawer
+          v-model="drawer"
+          temporary>
+
+          <v-list-item
+            prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
+            title="John Leider">
+          </v-list-item>
+
+          <v-divider></v-divider>
+
+          <v-list density="compact" nav>
+            <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
+            <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+          </v-list>
+
+        </v-navigation-drawer>
+
+        <v-main style="height: 250px">
+
+          <div class="d-flex justify-center align-center h-100">
+            <v-container>
+            Content
+            <router-view></router-view>
+            </v-container>
+          </div>
+
+        </v-main>
+
+      </v-layout>
+
+    </v-app>
+</template>
+
+<script>
+export default {
+  name: 'AppLayout',
+  props: {
+    msg: String
+  },
+  data() {
+    return {
+       drawer : ""
+       }
+    }
+  }
+
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
