@@ -7,16 +7,16 @@
     <input type="text" v-model="newProduct.name" >
     <input type="text" v-model="newProduct.quantity" >
     <input type="text" v-model="newProduct.description" >
-    <input type="text" v-model="newProduct.id" >
     <input type="submit">
   </form>
-  <div v-for="x in products" v-bind:key="x.name">
+  
+  <div v-for="x in products" v-bind:key="x.id">
     {{ x }}
     <v-btn @click="deleteProduct(x)"></v-btn>
   </div>
 </template>
 <script>
-import axios from 'axios'
+import ProductService from '@/services/ProductService';
 export default {
     
     data() {
@@ -35,23 +35,22 @@ export default {
   methods: {
     postProduct() {
       this.message = "New product created!";
-      axios.post("http://localhost:8080/products",this.newProduct)
+      ProductService.postProduct(this.newProduct)
       this.$store.commit('increment')
       console.log("projects created: " +this.$store.state.count)
     },
     deleteProduct(x) {
       this.message = "product deleted!";
+      ProductService.deleteProduct(x)
       console.log(x)
-      axios.delete("http://localhost:8080/products",{data:x})
+      
     }
   },
   mounted(){
         this.name = "Richard"
-        axios.get("http://localhost:8080/products")
-        .then(res=> {
-          console.log(res.data)
-          this.products = res.data
-        })
+        ProductService.getProducts().then(allProducts => this.products = allProducts)
+        console.log("this is the list")
+        console.log(this.products)
   },
     name: 'HelloWorld',
     props: {
