@@ -1,14 +1,12 @@
 <template>
     <v-app>
-      <v-app-bar app color="grey-darken-4">
+      <v-app-bar app color="grey-darken-4" >
         <v-btn
             icon="mdi-menu"
             @click.stop="drawer = !drawer">
             
         </v-btn>
       </v-app-bar>
-
-      <v-layout>
 
         <v-navigation-drawer
           v-model="drawer"
@@ -29,18 +27,15 @@
 
         </v-navigation-drawer>
 
-        <v-main style="height: 250px">
+        <v-main style="height: 250px" overflow-y-auto>
 
           <div class="d-flex justify-center align-center h-100">
             <v-container>
-            Content
             <router-view></router-view>
             </v-container>
           </div>
 
         </v-main>
-
-      </v-layout>
 
     </v-app>
 </template>

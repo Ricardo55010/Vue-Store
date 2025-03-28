@@ -7,6 +7,8 @@
     <input type="text" v-model="newProduct.name" >
     <input type="text" v-model="newProduct.quantity" >
     <input type="text" v-model="newProduct.description" >
+    <input type="text" v-model="newProduct.id" >
+    <input type="text" v-model = "option">
     <input type="submit">
   </form>
   
@@ -29,15 +31,23 @@ export default {
           quantity: 1,
           description: "ejemplo",
           id: 1
-       }
+       },
+       option : 0
     };
   },
   methods: {
     postProduct() {
-      this.message = "New product created!";
-      ProductService.postProduct(this.newProduct)
-      this.$store.commit('increment')
-      console.log("projects created: " +this.$store.state.count)
+      if(this.option == 1){
+        this.message = "New product created!";
+        ProductService.postProduct(this.newProduct)
+        this.$store.commit('increment')
+        console.log("projects created: " +this.$store.state.count)
+      }
+      else{
+        this.message = "Product Updated!";
+        ProductService.patchProduct(this.newProduct)
+      }
+      
     },
     deleteProduct(x) {
       this.message = "product deleted!";
