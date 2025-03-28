@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app  >
       <v-app-bar app color="grey-darken-4" >
         <v-btn
             icon="mdi-menu"
@@ -26,8 +26,9 @@
           </v-list>
 
         </v-navigation-drawer>
-
-        <v-main style="height: 250px" overflow-y-auto>
+        <v-card color="light-blue-lighten-5">
+        <v-main >
+          
 
           <div class="d-flex justify-center align-center h-100">
             <v-container>
@@ -36,7 +37,16 @@
           </div>
 
         </v-main>
-
+      </v-card>
+      <v-footer color="grey-darken-3" name="footer" app>
+       
+          <v-container>
+          Ricardo Rivera Pérez | RedCarpy@ 2025
+          Todos los derechos reservados
+        
+          </v-container>
+ 
+    </v-footer>
     </v-app>
 </template>
 
