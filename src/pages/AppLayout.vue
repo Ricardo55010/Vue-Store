@@ -6,6 +6,20 @@
             @click.stop="drawer = !drawer">
             
         </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+            icon="mdi-magnify"
+            @click.stop="drawer = !drawer">
+            
+        </v-btn>
+        <v-text-field hide-details="auto"
+        label="Search..."></v-text-field>
+        <v-spacer></v-spacer>
+        <v-btn
+            icon="mdi-logout"
+            @click.stop="drawer = !drawer">
+            
+        </v-btn>
       </v-app-bar>
 
         <v-navigation-drawer
@@ -32,7 +46,10 @@
 
           <div class="d-flex justify-center align-center h-100">
             <v-container>
-            <router-view></router-view>
+                <router-view></router-view>
+              
+
+
             </v-container>
           </div>
 

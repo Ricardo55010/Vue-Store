@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router"
 import TestComponent from "../components/TestComponent.vue";
 import AppLayout from "../pages/AppLayout.vue";
-import Home from "../components/Home.vue";
+import Results from "@/pages/Results.vue";
+import Home from "../pages/Home.vue";
 const routeInfos = [
     {
         path : "/",
@@ -14,6 +15,10 @@ const routeInfos = [
     {
         path : "/test",
         component: AppLayout
+    },
+    {
+        path : "/results",
+        component: Results
     },
 
 ]
