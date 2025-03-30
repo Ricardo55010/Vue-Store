@@ -30,7 +30,12 @@ export default {
           name: "ejemplo",
           quantity: 1,
           description: "ejemplo",
-          id: 1
+          id: 1,
+          categories: [{
+            id: 1,
+            name: "tecno",
+            description: "tecnologicos"}
+          ]
        },
        option : 0
     };
