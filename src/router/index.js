@@ -3,6 +3,7 @@ import TestComponent from "../components/TestComponent.vue";
 import AppLayout from "../pages/AppLayout.vue";
 import Results from "@/pages/Results.vue";
 import Home from "../pages/Home.vue";
+import CreateProduct from "@/pages/CreateProduct.vue";
 const routeInfos = [
     {
         path : "/",
@@ -19,6 +20,10 @@ const routeInfos = [
     {
         path : "/results",
         component: Results
+    },
+    {
+        path : "/create",
+        component: CreateProduct
     },
 
 ]

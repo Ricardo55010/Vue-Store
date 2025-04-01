@@ -32,9 +32,9 @@ export default {
           description: "ejemplo",
           id: 1,
           categories: [{
-            id: 1,
-            name: "tecno",
-            description: "tecnologicos"}
+            id: 14,
+            name: "diversion",
+            description: "divertida"}
           ]
        },
        option : 0

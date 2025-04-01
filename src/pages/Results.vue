@@ -16,7 +16,8 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
-              {{ x.quantity }}
+              {{ x.quantity }} 
+              {{ x.categories[0].name }}
           </v-col>
         </v-row>
 
