@@ -4,6 +4,8 @@ import AppLayout from "../pages/AppLayout.vue";
 import Results from "@/pages/Results.vue";
 import Home from "../pages/Home.vue";
 import CreateProduct from "@/pages/CreateProduct.vue";
+import Product from "@/pages/Product.vue";
+import EditProduct from "@/pages/EditProduct.vue";
 const routeInfos = [
     {
         path : "/",
@@ -24,6 +26,14 @@ const routeInfos = [
     {
         path : "/create",
         component: CreateProduct
+    },
+    {
+        path : "/product",
+        component: Product
+    },
+    {
+        path : "/edit",
+        component: EditProduct
     },
 
 ]

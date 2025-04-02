@@ -12,6 +12,17 @@ class ProductService{
         }
         )
     }
+    getProductById(id){
+      return  axios.get("http://localhost:8080/products/"+id)
+      .then(res=> {
+        console.log(res.data)
+        return res.data
+      }).catch( error=>{
+       console.log("No se encontró, error:" + error.status)
+       
+      }
+      )
+  }
     searchProducts(x){
       return  axios.get("http://localhost:8080/search/"+x)
       .then(res=> {
