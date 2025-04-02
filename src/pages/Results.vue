@@ -46,7 +46,11 @@ import ProductService from '@/services/ProductService';
 
   },
     mounted(){
-        ProductService.getProducts().then(allProducts => this.products = allProducts)
+      const urlParams = new URLSearchParams(window.location.search);
+      console.log(urlParams.has('search'));
+      console.log(urlParams.get('search'));
+        ProductService.searchProducts(urlParams.get('search'))
+        .then(allProducts => this.products = allProducts)
         console.log("this is the list")
         console.log(this.products)
   }

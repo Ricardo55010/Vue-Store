@@ -7,13 +7,15 @@
             
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn
+        <v-btn :href="result"
             icon="mdi-magnify"
             @click.stop="drawer = !drawer">
             
         </v-btn>
         <v-text-field hide-details="auto"
-        label="Search..."></v-text-field>
+        
+        label="Search..."
+        v-model="search"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn
             icon="mdi-logout"
@@ -35,8 +37,8 @@
           <v-divider></v-divider>
 
           <v-list density="compact" nav>
-            <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-            <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+            <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
+            <v-list-item prepend-icon="mdi-forum" title="Create" value="Create" href="create"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
@@ -76,8 +78,14 @@ export default {
   },
   data() {
     return {
-       drawer : ""
+       drawer : "",
+       search: ""
        }
+    },
+    computed: {
+      result(){
+          return "results"+"?"+"search="+this.search
+      }
     }
   }
 
