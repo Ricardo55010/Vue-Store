@@ -2,13 +2,13 @@
     <Carrousel></Carrousel>
 
     <RowSection></RowSection>
-    <RowSection></RowSection>
   </template>
-  
+
   <script>
 import Carrousel from '@/components/Sections/Carrousel.vue';
 import RowSection from '@/components/Sections/RowSection.vue';
-
+import CategoryService from '@/services/CategoryService';
+import ProductService from '@/services/ProductService';
   export default {
     name: 'HelloWorld',
     props: {
@@ -18,10 +18,22 @@ import RowSection from '@/components/Sections/RowSection.vue';
       Carrousel,
       RowSection
     },
+    
+    mounted(){
+      CategoryService.getCategories().then(categories => {
+        this.$store.commit('setCategories',categories)
+      });
+      ProductService.getProducts().then(products => {
+        this.$store.commit('setProducts',products)
+      });
+
+    },
     data() {
     return {
-       
-    }}
+       categories: "",
+    }
+
+  }
    
   }
   </script>

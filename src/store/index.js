@@ -4,12 +4,20 @@ import { createStore } from 'vuex'
 const store = createStore({
   state () {
     return {
-      count: 0
+      count: 0,
+      categories: [],
+      products:[]
     }
   },
   mutations: {
     increment (state) {
       state.count++
+    },
+    setCategories(state,categoriesToSet){
+      state.categories = categoriesToSet
+    },
+    setProducts(state,productsToSet){
+      state.products = productsToSet
     }
   }
 })
