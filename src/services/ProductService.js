@@ -7,7 +7,7 @@ class ProductService{
           console.log(res.data)
           return res.data
         }).catch( error=>{
-         console.log("No se encontró, error:" + error.status)
+         console.log("Not found, error:" + error.status)
          
         }
         )
@@ -18,7 +18,7 @@ class ProductService{
         console.log(res.data)
         return res.data
       }).catch( error=>{
-       console.log("No se encontró, error:" + error.status)
+       console.log("Not found, error:" + error.status)
        
       }
       )
@@ -29,7 +29,7 @@ class ProductService{
         console.log(res.data)
         return res.data
       }).catch( error=>{
-       console.log("No se encontró, error:" + error.status)
+       console.log("Not found, error:" + error.status)
        
       }
       )
@@ -37,10 +37,10 @@ class ProductService{
 
      postProduct(newProduct){
         axios.post("http://localhost:8080/products",newProduct).then(res=> {
-         console.log("Se creo producto" + res.data)
+         console.log("Not created" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("No se creo, error:" + error.status)
+        console.log("Error:" + error.status)
         
        }
        )
@@ -50,17 +50,17 @@ class ProductService{
          console.log("Se borró producto" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("No se borró, error:" + error.status)
+        console.log("Error:" + error.status)
         
        }
        )
      }
      patchProduct(updatedProduct){
       axios.patch("http://localhost:8080/products",updatedProduct).then(res=> {
-         console.log("Se acutalizó producto" + res.data)
+         console.log("Not updated" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("No se actualizó, error:" + error.status)
+        console.log("rrror:" + error.status)
         
        }
        )
