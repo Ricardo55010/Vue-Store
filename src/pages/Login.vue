@@ -9,21 +9,29 @@
     <form class="px-5 py-5">
       
 
-      <v-row>
-
-        <v-col>
+      <v-row >
+        <v-col class="d-flex align-center" cols="2" md="2" lg="2" xl="2">
+          <v-icon icon="mdi-account"></v-icon>
+        </v-col>
+        <v-col >
           <v-text-field
-
         label="Email"
         required
       ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+      <v-col class="d-flex align-center" cols="2" md="2" lg="2" xl="2">
+        <v-icon icon="mdi-lock"></v-icon>
+      </v-col> 
+      <v-col>
       <v-text-field
 
         label="******"
         required
         type="password"
         ></v-text-field>
-        </v-col>
+      </v-col>
 
       </v-row>
       <v-spacer>         

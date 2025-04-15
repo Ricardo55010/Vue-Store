@@ -13,7 +13,7 @@
             
         </v-btn>
         <v-text-field hide-details="auto"
-        
+        @keydown.enter.prevent="this.$router.push('/results?search='+ search)"
         label="Search..."
         v-model="search"></v-text-field>
         <v-spacer></v-spacer>
@@ -38,15 +38,15 @@
 
           <v-list density="compact" nav>
             <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
-            <v-list-item prepend-icon="mdi-forum" title="Create" value="Create" href="create"></v-list-item>
+            <v-list-item prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
-        <v-card color="light-blue-lighten-5">
+        <v-card height="100%" color="light-blue-lighten-5">
         <v-main >
           
 
-          <div class="d-flex justify-center align-center h-100">
+          <div  class="d-flex justify-center align-center">
             <v-container>
                 <router-view></router-view>
               

@@ -1,6 +1,9 @@
 <template>
-    <v-carousel color="grey-darken-4" class="mb-3" height="300">
-      <v-carousel-item v-for="product in products" v-bind:key="product.id" color="grey-darken-4" rounded="lg">
+    <v-carousel color="grey-darken-4" class="mb-3" height="500">
+      <v-carousel-item  cover="true" color="grey-darken-4" rounded="lg">
+        Most wanted products
+      </v-carousel-item>
+      <v-carousel-item  cover="true" v-for="product in products" v-bind:key="product.id" color="grey-darken-4" rounded="lg">
         {{product.name}}
       </v-carousel-item>
     </v-carousel>
