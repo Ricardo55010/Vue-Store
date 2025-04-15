@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router"
 import TestComponent from "../components/TestComponent.vue";
 import AppLayout from "../pages/AppLayout.vue";
-import Results from "@/pages/Results.vue";
-import Home from "../pages/Home.vue";
-import CreateProduct from "@/pages/CreateProduct.vue";
-import Product from "@/pages/Product.vue";
-import EditProduct from "@/pages/EditProduct.vue";
-import Login from "@/pages/Login.vue";
+import Results from "@/pages/General/Results.vue";
+import Home from "../pages/General/Home.vue";
+import CreateProduct from "@/pages/Products/Create.vue";
+import Product from "@/pages/Products/Show.vue";
+import EditProduct from "@/pages/Products/Edit.vue";
+import Login from "@/pages/General/Login.vue";
 const routeInfos = [
     {
         path : "/",
