@@ -6,6 +6,7 @@ import Home from "../pages/Home.vue";
 import CreateProduct from "@/pages/CreateProduct.vue";
 import Product from "@/pages/Product.vue";
 import EditProduct from "@/pages/EditProduct.vue";
+import Login from "@/pages/Login.vue";
 const routeInfos = [
     {
         path : "/",
@@ -34,6 +35,10 @@ const routeInfos = [
     {
         path : "/edit",
         component: EditProduct
+    },
+    {
+        path : "/login",
+        component: Login
     },
 
 ]
