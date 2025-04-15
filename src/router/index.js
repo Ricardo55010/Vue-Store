@@ -7,6 +7,7 @@ import CreateProduct from "@/pages/Products/Create.vue";
 import Product from "@/pages/Products/Show.vue";
 import EditProduct from "@/pages/Products/Edit.vue";
 import Login from "@/pages/General/Login.vue";
+import Register from "@/pages/General/Register.vue";
 const routeInfos = [
     {
         path : "/",
@@ -40,7 +41,10 @@ const routeInfos = [
         path : "/login",
         component: Login
     },
-
+    {
+        path : "/Register",
+        component: Register
+    },
 ]
 
 const router = createRouter({

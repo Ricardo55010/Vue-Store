@@ -1,14 +1,24 @@
   <template>
     <v-card class ="px-5 py-5">
     <template v-slot:title>
-      <span class="font-weight-black">Login</span>
+      <span class="font-weight-black">Register</span>
     </template>
     <template v-slot:subtitle>
       <span class="font-weight-black">Please fill in the following data</span>
     </template>
     <form class="px-5 py-5">
       
-
+      <v-row >
+        <v-col class="d-flex align-center" cols="2" md="2" lg="2" xl="2">
+          <v-icon icon="mdi-book"></v-icon>
+        </v-col>
+        <v-col >
+          <v-text-field
+        label="Name"
+        required
+      ></v-text-field>
+        </v-col>
+      </v-row>
       <v-row >
         <v-col class="d-flex align-center" cols="2" md="2" lg="2" xl="2">
           <v-icon icon="mdi-account"></v-icon>
@@ -35,7 +45,7 @@
 
       </v-row>
       <v-spacer>         
-      <v-btn  color="teal-darken-4" > Login</v-btn>
+      <v-btn  color="teal-darken-4" > Register</v-btn>
     </v-spacer>
 
   </form>
@@ -45,7 +55,7 @@
   <script>
 
   export default {
-    name: 'LoginView',
+    name: 'RegisterView',
     props: {
       msg: String
     },

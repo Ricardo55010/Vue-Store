@@ -18,7 +18,11 @@ import ProductService from '@/services/ProductService';
       Carrousel,
       RowSection
     },
-    
+    data() {
+    return {
+       categories: "",
+    }
+  },
     mounted(){
       CategoryService.getCategories().then(categories => {
         this.$store.commit('setCategories',categories)
@@ -27,13 +31,10 @@ import ProductService from '@/services/ProductService';
         this.$store.commit('setProducts',products)
       });
 
-    },
-    data() {
-    return {
-       categories: "",
     }
 
-  }
+
+  
    
   }
   </script>
