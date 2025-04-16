@@ -34,6 +34,17 @@ class ProductService{
       }
       )
   }
+  searchProductsByUser(id){
+    return  axios.get("http://localhost:8080/searchByUser/"+id)
+    .then(res=> {
+      console.log(res.data)
+      return res.data
+    }).catch( error=>{
+     console.log("Not found, error:" + error.status)
+     
+    }
+    )
+}
 
      postProduct(newProduct){
         axios.post("http://localhost:8080/products",newProduct).then(res=> {

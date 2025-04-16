@@ -8,6 +8,7 @@ import Product from "@/pages/Products/Show.vue";
 import EditProduct from "@/pages/Products/Edit.vue";
 import Login from "@/pages/General/Login.vue";
 import Register from "@/pages/General/Register.vue";
+import MyProducts from "@/pages/Private/MyProducts.vue";
 const routeInfos = [
     {
         path : "/",
@@ -45,6 +46,10 @@ const routeInfos = [
         path : "/Register",
         component: Register
     },
+    {
+        path : "/my-products",
+        component: MyProducts
+    }
 ]
 
 const router = createRouter({

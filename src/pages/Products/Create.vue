@@ -100,7 +100,8 @@ export default {
           quantity: 1,
           description: "ejemplo",
           id: 1,
-          categories: []
+          categories: [],
+          user: JSON.parse(localStorage.getItem('user'))
        },
        option : 0
     };

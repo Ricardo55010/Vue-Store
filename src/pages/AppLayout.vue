@@ -59,6 +59,7 @@
           <v-list density="compact" nav>
             <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
             <v-list-item prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
+            <v-list-item prepend-icon="mdi-package" title="My products" value="My products" href="my-products"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
