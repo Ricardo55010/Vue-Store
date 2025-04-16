@@ -1,9 +1,9 @@
   <template>
     
-    <div v-for="x in products" v-bind:key="x.id">
-      <v-card  class="mb-3">
+    <div v-for="product in products" v-bind:key="product.id">
+      <v-card  class="mb-3" :href="link(product.id)">
         <template v-slot:title>
-      <span class="font-weight-black">{{x.name}}</span>
+      <span class="font-weight-black">{{product.name}}</span>
     </template>
         <v-card-text class="bg-surface-light pt-4">
           <v-row>
@@ -12,12 +12,12 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
-              {{ x.description }}
+              {{ product.description }}
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
-              {{ x.quantity }} 
-              {{ x.categories[0].name }}
+              {{ product.quantity }} 
+              {{ product.categories[0].name }}
           </v-col>
         </v-row>
 
@@ -43,7 +43,9 @@ import ProductService from '@/services/ProductService';
        products: ""
     }},
     methods: {
-
+      link(id){
+      return "product?id="+id;
+    } 
   },
     mounted(){
       const urlParams = new URLSearchParams(window.location.search);

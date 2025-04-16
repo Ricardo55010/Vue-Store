@@ -17,9 +17,29 @@
         label="Search..."
         v-model="search"></v-text-field>
         <v-spacer></v-spacer>
+        <v-menu
+      open-on-hover
+    >
+      <template v-slot:activator="{ props }">
+        <v-btn
+          color="white"
+          v-bind="props"
+          icon="mdi-shopping"
+        >
+          
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item
+        >Example 1
+          <v-list-item-title> Title 1</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
         <v-btn
             icon="mdi-logout"
-            @click.stop="drawer = !drawer">
+            @click.stop="logout">
             
         </v-btn>
       </v-app-bar>
@@ -85,6 +105,11 @@ export default {
     computed: {
       result(){
           return "results"+"?"+"search="+this.search
+      }
+    },
+    methods: {
+      logout() {
+        this.$router.push('/login')
       }
     }
   }
