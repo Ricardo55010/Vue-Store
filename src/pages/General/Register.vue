@@ -15,6 +15,7 @@
         <v-col >
           <v-text-field
         label="Name"
+        v-model="user.name"
         required
       ></v-text-field>
         </v-col>
@@ -25,6 +26,7 @@
         </v-col>
         <v-col >
           <v-text-field
+        v-model="user.email"
         label="Email"
         required
       ></v-text-field>
@@ -36,7 +38,7 @@
       </v-col> 
       <v-col>
       <v-text-field
-
+        v-model="user.password"
         label="******"
         required
         type="password"
@@ -45,7 +47,7 @@
 
       </v-row>
       <v-spacer>         
-      <v-btn  color="teal-darken-4" > Register</v-btn>
+      <v-btn  color="teal-darken-4" @click="createUser"> Register</v-btn>
     </v-spacer>
 
   </form>
@@ -53,7 +55,7 @@
   </template>
 
   <script>
-
+  import UserService from '@/services/UserService';
   export default {
     name: 'RegisterView',
     props: {
@@ -64,11 +66,21 @@
     },
     data() {
       return {    
-
+        user: {
+          name: "",
+          email: "",
+          password: ""
+        }
       }
     },
     mounted(){
         
+    },
+    methods:{
+      createUser(){
+          UserService.postUser(this.user)
+          alert("User created")
+      }
     }
    
 
