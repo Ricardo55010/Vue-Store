@@ -13,8 +13,9 @@ class UserService{
         )
     }
     postUser(user){
-      axios.post("http://localhost:8080/User",user).then(res=> {
+      return axios.post("http://localhost:8080/User",user).then(res=> {
        console.log("Created" + res.data)
+       console.log(res.data)
        return res.data
      }).catch( error=>{
       console.log("Error:" + error.status)

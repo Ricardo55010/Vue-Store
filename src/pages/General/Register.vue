@@ -78,8 +78,9 @@
     },
     methods:{
       createUser(){
-          UserService.postUser(this.user)
-          alert("User created")
+          UserService.postUser(this.user).
+          then(loggedUser => localStorage.setItem('user',JSON.stringify(loggedUser)))
+          .then(() => this.$router.push('/'));
       }
     }
    
