@@ -16,6 +16,7 @@
         <v-col >
           <v-text-field
         label="Email"
+        v-model="User.email"
         required
       ></v-text-field>
         </v-col>
@@ -30,12 +31,13 @@
         label="******"
         required
         type="password"
+        v-model="User.password"
         ></v-text-field>
       </v-col>
 
       </v-row>
       <v-spacer>         
-      <v-btn  color="teal-darken-4" > Login</v-btn>
+      <v-btn  color="teal-darken-4" @click="login" > Login</v-btn>
     </v-spacer>
 
   </form>
@@ -54,12 +56,22 @@
     },
     data() {
       return {    
-
+          User:{
+              name: "Ricardo",
+              email: "",
+              password: ""
+          }
       }
     },
     mounted(){
         
-    }
+    },
+    methods: {
+        login(){
+          localStorage.setItem('user',JSON.stringify(this.User));
+          this.$router.push('/');
+        }
+    } 
    
 
   
