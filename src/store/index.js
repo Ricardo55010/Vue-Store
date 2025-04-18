@@ -6,7 +6,13 @@ const store = createStore({
     return {
       count: 0,
       categories: [],
-      products:[]
+      products:[],
+      user:JSON.parse(localStorage.getItem('user')),
+      shoppingCart:{
+          id:'',
+          productList:[],
+          user:JSON.parse(localStorage.getItem('user'))
+      }
     }
   },
   mutations: {
@@ -18,7 +24,15 @@ const store = createStore({
     },
     setProducts(state,productsToSet){
       state.products = productsToSet
+    },
+    setShoppingCart(state,shoppingCart){
+      if(shoppingCart != undefined){
+        state.shoppingCart = shoppingCart;
+      }
+      
     }
+
+    
   }
 })
 

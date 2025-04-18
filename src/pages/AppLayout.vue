@@ -31,6 +31,10 @@
       </template>
 
       <v-list>
+        <v-list-item v-for="product in shoppingCart.productList" v-bind:key="product.id">
+          {{ product.id }}
+          <v-list-item-title>{{product.name}}</v-list-item-title>
+        </v-list-item>
         <v-list-item
         >Example 1
           <v-list-item-title> Title 1</v-list-item-title>
@@ -91,6 +95,7 @@
 </template>
 
 <script>
+import ShoppingCartService from '@/services/ShoppingCartService'
 import '@mdi/font/css/materialdesignicons.css'
 export default {
   name: 'AppLayout',
@@ -100,14 +105,29 @@ export default {
   data() {
     return {
        drawer : "",
-       search: ""
+       search: "",
+
        }
+    },
+    mounted(){
+      ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
+      .then(shoppingCart => this.$store.commit('setShoppingCart', shoppingCart));
     },
     computed: {
       result(){
           return "results"+"?"+"search="+this.search
-      }
+      },
+      shoppingCart: {
+        get () {
+          return this.$store.state.shoppingCart
+        },
+        set (value) {
+          this.$store.commit('setShoppingCart', value )
+        }
+    }
+      
     },
+    
     methods: {
       logout() {
         localStorage.removeItem('user');

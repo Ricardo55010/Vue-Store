@@ -25,18 +25,15 @@
       
       <v-row>
         <v-col>
-          <v-select return-object
-        v-model="category"
-        :items="items"
-        item-title="name"
-        item-value="name"
-        label="Item"
+          <v-text-field
+        v-model="comment.comment"
+        label="Comments"
         required
-      ></v-select>
+      ></v-text-field>
         </v-col>
         <v-col>
                 
-      <v-btn @click="addCategory(category)" color="deep-orange-accent-4" > add category</v-btn>
+      <v-btn @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
         </v-col>
       </v-row>
       <v-row class="mb-5 d-flex justify-center" >
@@ -46,11 +43,23 @@
         
       </div>
     </v-row>
-      <v-btn @click="postProduct" color="teal-darken-4"> Create</v-btn>
+      <v-btn @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
     
   </form>
   </v-card>
 {{ newProduct }}
+
+{{ comments }}
+
+<v-card v-for="comment in comments" v-bind:key="comment.id">
+    <template v-slot:title>
+      <span class="font-weight-black">{{comment.user.name}}</span>
+    </template>
+    <template v-slot:subtitle>
+      <span class="font-weight-black">Si</span>
+    </template>
+    {{ comment.comment }}
+  </v-card>
 
 <v-snackbar 
       v-model="snackbar"
@@ -71,6 +80,8 @@
 </template>
 <script>
 import ProductService from '@/services/ProductService';
+import ShoppingCartService from '@/services/ShoppingCartService';
+import CommentService from '@/services/CommentService';
 export default {
     
     data() {
@@ -102,6 +113,15 @@ export default {
           id: 1,
           categories: []
        },
+       comment:{
+          id :"",
+          comment:"",
+          user:JSON.parse(localStorage.getItem('user')),
+          product: {
+            id:""
+          }
+       },
+       comments:[],
        option : 0
     };
   },
@@ -125,11 +145,20 @@ export default {
 
       
     },
-
+    addToShoppingCar(){
+        this.$store.state.shoppingCart.productList.push(this.newProduct)
+        ShoppingCartService.patchShopping(this.$store.state.shoppingCart);
+      },
+      addComment(){
+      this.comment.product.id = this.newProduct.id
+      CommentService.postComment(this.comment)
+  }
   },
+
   mounted(){
       const urlParams = new URLSearchParams(window.location.search);
         ProductService.getProductById(urlParams.get('id')).then(product => this.newProduct = product)
+        CommentService.getCommentsById(urlParams.get('id')).then(comments => this.comments = comments)
   },
     name: 'Product-See',
     props: {
