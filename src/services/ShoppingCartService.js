@@ -31,7 +31,7 @@ class ShoppingProductService{
          console.log("Not updated" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("rrror:" + error.status)
+        console.log("Errror:" + error.status)
         
        }
        )

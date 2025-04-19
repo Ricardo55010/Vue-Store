@@ -7,7 +7,7 @@ class CategoryService{
           console.log(res.data)
           return res.data
         }).catch( error=>{
-         console.log("No se encontró, error:" + error.status)
+         console.log("Not found, error:" + error.status)
          
         }
         )
