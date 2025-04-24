@@ -39,6 +39,10 @@
         >Example 1
           <v-list-item-title> Title 1</v-list-item-title>
         </v-list-item>
+        <v-list-item
+        >
+        <v-btn @click="createOrder">Create order</v-btn>
+        </v-list-item>
       </v-list>
     </v-menu>
         <v-btn
@@ -95,6 +99,7 @@
 </template>
 
 <script>
+//import OrderService from '@/services/OrderService';
 import ShoppingCartService from '@/services/ShoppingCartService'
 import '@mdi/font/css/materialdesignicons.css'
 export default {
@@ -110,6 +115,7 @@ export default {
        }
     },
     mounted(){
+      if(localStorage.getItem('user') != null)
       ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
       .then(shoppingCart => this.$store.commit('setShoppingCart', shoppingCart));
     },
@@ -132,6 +138,10 @@ export default {
       logout() {
         localStorage.removeItem('user');
         this.$router.push('/login')
+      },
+      createOrder() {
+        alert("Order created");
+        //OrderService.postOrder(this.$store.state.shoppingCart)
       }
     }
   }

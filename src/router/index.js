@@ -9,6 +9,7 @@ import EditProduct from "@/pages/Products/Edit.vue";
 import Login from "@/pages/General/Login.vue";
 import Register from "@/pages/General/Register.vue";
 import MyProducts from "@/pages/Private/MyProducts.vue";
+import Orders from "@/pages/Private/Orders.vue";
 const routeInfos = [
     {
         path : "/",
@@ -49,6 +50,10 @@ const routeInfos = [
     {
         path : "/my-products",
         component: MyProducts
+    },
+    {
+        path : "/order",
+        component: Orders
     }
 ]
 

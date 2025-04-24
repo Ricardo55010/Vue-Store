@@ -146,8 +146,15 @@ export default {
       
     },
     addToShoppingCar(){
+      if(this.$store.state.shoppingCart.id==''){
+        this.$store.state.shoppingCart.productList.push(this.newProduct)
+        ShoppingCartService.postShopping(this.$store.state.shoppingCart);
+      }
+      else{
         this.$store.state.shoppingCart.productList.push(this.newProduct)
         ShoppingCartService.patchShopping(this.$store.state.shoppingCart);
+      }
+        
       },
       addComment(){
       this.comment.product.id = this.newProduct.id
