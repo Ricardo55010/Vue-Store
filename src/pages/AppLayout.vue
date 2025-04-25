@@ -68,6 +68,7 @@
             <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
             <v-list-item prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
             <v-list-item prepend-icon="mdi-package" title="My products" value="My products" href="my-products"></v-list-item>
+            <v-list-item prepend-icon="mdi-package" title="My orders" value="My orders" href="my-orders"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
@@ -99,7 +100,7 @@
 </template>
 
 <script>
-//import OrderService from '@/services/OrderService';
+import OrderService from '@/services/OrderService';
 import ShoppingCartService from '@/services/ShoppingCartService'
 import '@mdi/font/css/materialdesignicons.css'
 export default {
@@ -111,13 +112,19 @@ export default {
     return {
        drawer : "",
        search: "",
-
+       order:{
+        id:0,
+        shoppingCart:[],
+        user:JSON.parse(localStorage.getItem('user'))
+        }
        }
     },
     mounted(){
       if(localStorage.getItem('user') != null)
       ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
-      .then(shoppingCart => this.$store.commit('setShoppingCart', shoppingCart));
+      .then(shoppingCart => {this.$store.commit('setShoppingCart', shoppingCart)
+        return shoppingCart
+      }).then(shoppingCart => this.order.shoppingCart = shoppingCart);
     },
     computed: {
       result(){
@@ -140,8 +147,8 @@ export default {
         this.$router.push('/login')
       },
       createOrder() {
-        alert("Order created");
-        //OrderService.postOrder(this.$store.state.shoppingCart)
+        console.log(this.order)
+        OrderService.postOrder(this.order)
       }
     }
   }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 class OrderService{
-     getOrder(id){
+     getOrders(id){
       console.log("Tu id" + id)
         return  axios.get("http://localhost:8080/Order/"+id)
         .then(res=> {
@@ -17,7 +17,7 @@ class OrderService{
 
      postOrder(Order){
         axios.post("http://localhost:8080/Order",Order).then(res=> {
-         console.log("Not created" + res.data)
+         console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Error:" + error.status)

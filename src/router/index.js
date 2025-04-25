@@ -52,7 +52,7 @@ const routeInfos = [
         component: MyProducts
     },
     {
-        path : "/order",
+        path : "/my-orders",
         component: Orders
     }
 ]
