@@ -16,7 +16,7 @@ class ProductService{
 
      postComment(comment){
         axios.post("http://localhost:8080/comment",comment).then(res=> {
-         console.log("Not created" + res.data)
+         console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Error:" + error.status)

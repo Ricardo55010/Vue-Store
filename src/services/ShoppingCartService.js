@@ -17,7 +17,7 @@ class ShoppingProductService{
 
      postShopping(ShoppingCart){
         axios.post("http://localhost:8080/ShoppingCart",ShoppingCart).then(res=> {
-         console.log("Not created" + res.data)
+         console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Error:" + error.status)
@@ -28,7 +28,7 @@ class ShoppingProductService{
 
      patchShopping(ShoppingCart){
       axios.patch("http://localhost:8080/ShoppingCart",ShoppingCart).then(res=> {
-         console.log("Not updated" + res.data)
+         console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Errror:" + error.status)

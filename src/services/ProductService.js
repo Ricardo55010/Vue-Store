@@ -48,7 +48,7 @@ class ProductService{
 
      postProduct(newProduct){
         axios.post("http://localhost:8080/products",newProduct).then(res=> {
-         console.log("Not created" + res.data)
+         console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Error:" + error.status)
@@ -58,7 +58,7 @@ class ProductService{
      }
      deleteProduct(x){
         axios.delete("http://localhost:8080/products",{data:x}).then(res=> {
-         console.log("Se borró producto" + res.data)
+         console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Error:" + error.status)
@@ -68,7 +68,7 @@ class ProductService{
      }
      patchProduct(updatedProduct){
       axios.patch("http://localhost:8080/products",updatedProduct).then(res=> {
-         console.log("Not updated" + res.data)
+         console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
         console.log("Errror:" + error.status)
