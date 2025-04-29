@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+import authHeader from './AuthHeader'
 class ProductService{
      getProducts(){
-        return  axios.get("http://localhost:8080/products")
+        return  axios.get("http://localhost:8080/products",{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
@@ -77,6 +77,5 @@ class ProductService{
        )
      }
 }
-
 
 export default new ProductService()

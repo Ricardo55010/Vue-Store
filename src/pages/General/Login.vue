@@ -45,6 +45,8 @@
   </template>
 
   <script>
+import UserService from '@/services/UserService';
+
 
   export default {
     name: 'LoginView',
@@ -69,8 +71,13 @@
     },
     methods: {
         login(){
-          localStorage.setItem('user',JSON.stringify(this.User));
-          this.$router.push('/');
+          UserService.login(this.User).then( () =>{
+            console.log("logged in");
+            localStorage.setItem('user',JSON.stringify(this.User));
+            this.$router.push('/');
+          }
+          )
+          
         }
     } 
    
