@@ -1,8 +1,9 @@
 import axios from 'axios'
 import authHeader from './AuthHeader'
+import Util from './Util'
 class UserService{
      getUse(id){
-        return  axios.get("http://localhost:8080/User/"+id,{ headers: authHeader() })
+        return  axios.get(Util.urlAPI()+"/User/"+id,{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
@@ -13,7 +14,7 @@ class UserService{
         )
     }
     postUser(user){
-      return axios.post("http://localhost:8080/User",user,{ headers: authHeader() }).then(res=> {
+      return axios.post(Util.urlAPI()+"/User",user,{ headers: authHeader() }).then(res=> {
        console.log("Created" + res.data)
        console.log(res.data)
        return res.data
@@ -30,7 +31,7 @@ class UserService{
     params.append('client_secret', user.password);
     params.append('grant_type', 'client_credentials');
      console.log(params)
-     return axios.post("http://localhost:9000/oauth2/token",params).then(res=> {
+     return axios.post(Util.urlAPIAuth()+"/oauth2/token",params).then(res=> {
       console.log("Logged" + res.data)
       console.log(res.data)
       localStorage.setItem('token',JSON.stringify(res.data));

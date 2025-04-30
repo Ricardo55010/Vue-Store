@@ -1,8 +1,9 @@
 import axios from 'axios'
 import authHeader from './AuthHeader'
+import Util from './Util'
 class ProductService{
      getProducts(){
-        return  axios.get("http://localhost:8080/products",{ headers: authHeader() })
+        return  axios.get(Util.urlAPI()+"/products",{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
@@ -13,7 +14,7 @@ class ProductService{
         )
     }
     getProductById(id){
-      return  axios.get("http://localhost:8080/products/"+id,{ headers: authHeader() })
+      return  axios.get(Util.urlAPI()+"/products/"+id,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -24,7 +25,7 @@ class ProductService{
       )
   }
     searchProducts(x){
-      return  axios.get("http://localhost:8080/search/"+x,{ headers: authHeader() })
+      return  axios.get(Util.urlAPI()+"/search/"+x,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -35,7 +36,7 @@ class ProductService{
       )
   }
   searchProductsByUser(id){
-    return  axios.get("http://localhost:8080/searchByUser/"+id,{ headers: authHeader() })
+    return  axios.get(Util.urlAPI()+"/searchByUser/"+id,{ headers: authHeader() })
     .then(res=> {
       console.log(res.data)
       return res.data
@@ -47,7 +48,7 @@ class ProductService{
 }
 
      postProduct(newProduct){
-        axios.post("http://localhost:8080/products",newProduct,{ headers: authHeader() }).then(res=> {
+        axios.post(Util.urlAPI()+"/products",newProduct,{ headers: authHeader() }).then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{

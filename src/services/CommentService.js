@@ -1,8 +1,9 @@
 import axios from 'axios'
 import authHeader from './AuthHeader'
+import Util from './Util'
 class ProductService{
     getCommentsById(id){
-      return  axios.get("http://localhost:8080/comment/"+id,{ headers: authHeader() })
+      return  axios.get(Util.urlAPI()+"/comment/"+id,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -15,7 +16,7 @@ class ProductService{
 
 
      postComment(comment){
-        axios.post("http://localhost:8080/comment",comment,{ headers: authHeader() }).then(res=> {
+        axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() }).then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
@@ -25,7 +26,7 @@ class ProductService{
        )
      }
      deleteComment(comment){
-        axios.delete("http://localhost:8080/comment",{data:comment},{ headers: authHeader() }).then(res=> {
+        axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() }).then(res=> {
          console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{

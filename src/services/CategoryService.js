@@ -1,8 +1,9 @@
 import axios from 'axios'
 import authHeader from './AuthHeader'
+import Util from './Util'
 class CategoryService{
      getCategories(){
-        return  axios.get("http://localhost:8080/categories",{ headers: authHeader() })
+        return  axios.get(Util.urlAPI() +"/categories",{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
