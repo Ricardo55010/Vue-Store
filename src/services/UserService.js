@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+import authHeader from './AuthHeader'
 class UserService{
      getUse(id){
-        return  axios.get("http://localhost:8080/User/"+id)
+        return  axios.get("http://localhost:8080/User/"+id,{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
@@ -13,7 +13,7 @@ class UserService{
         )
     }
     postUser(user){
-      return axios.post("http://localhost:8080/User",user).then(res=> {
+      return axios.post("http://localhost:8080/User",user,{ headers: authHeader() }).then(res=> {
        console.log("Created" + res.data)
        console.log(res.data)
        return res.data

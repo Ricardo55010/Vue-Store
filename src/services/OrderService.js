@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+import authHeader from './AuthHeader'
 class OrderService{
      getOrders(id){
-        return  axios.get("http://localhost:8080/Order/"+id)
+        return  axios.get("http://localhost:8080/Order/"+id,{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data
@@ -15,7 +15,7 @@ class OrderService{
 
 
      postOrder(Order){
-        axios.post("http://localhost:8080/Order",Order).then(res=> {
+        axios.post("http://localhost:8080/Order",Order,{ headers: authHeader() }).then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{

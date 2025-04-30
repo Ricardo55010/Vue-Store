@@ -13,7 +13,7 @@ class ProductService{
         )
     }
     getProductById(id){
-      return  axios.get("http://localhost:8080/products/"+id)
+      return  axios.get("http://localhost:8080/products/"+id,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -24,7 +24,7 @@ class ProductService{
       )
   }
     searchProducts(x){
-      return  axios.get("http://localhost:8080/search/"+x)
+      return  axios.get("http://localhost:8080/search/"+x,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -35,7 +35,7 @@ class ProductService{
       )
   }
   searchProductsByUser(id){
-    return  axios.get("http://localhost:8080/searchByUser/"+id)
+    return  axios.get("http://localhost:8080/searchByUser/"+id,{ headers: authHeader() })
     .then(res=> {
       console.log(res.data)
       return res.data
@@ -47,7 +47,7 @@ class ProductService{
 }
 
      postProduct(newProduct){
-        axios.post("http://localhost:8080/products",newProduct).then(res=> {
+        axios.post("http://localhost:8080/products",newProduct,{ headers: authHeader() }).then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
@@ -57,7 +57,7 @@ class ProductService{
        )
      }
      deleteProduct(x){
-        axios.delete("http://localhost:8080/products",{data:x}).then(res=> {
+        axios.delete("http://localhost:8080/products",{data:x},{ headers: authHeader() }).then(res=> {
          console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{
@@ -67,7 +67,7 @@ class ProductService{
        )
      }
      patchProduct(updatedProduct){
-      axios.patch("http://localhost:8080/products",updatedProduct).then(res=> {
+      axios.patch("http://localhost:8080/products",updatedProduct,{ headers: authHeader() }).then(res=> {
          console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
