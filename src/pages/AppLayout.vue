@@ -1,7 +1,7 @@
 <template>
     <v-app  >
       <v-app-bar app color="grey-darken-4" >
-        <v-btn
+        <v-btn 
             icon="mdi-menu"
             @click.stop="drawer = !drawer">
             
@@ -46,6 +46,7 @@
       </v-list>
     </v-menu>
         <v-btn
+        v-if="user!=null"
             icon="mdi-logout"
             @click.stop="logout">
             
@@ -66,9 +67,9 @@
 
           <v-list density="compact" nav>
             <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
-            <v-list-item prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
-            <v-list-item prepend-icon="mdi-package" title="My products" value="My products" href="my-products"></v-list-item>
-            <v-list-item prepend-icon="mdi-package" title="My orders" value="My orders" href="my-orders"></v-list-item>
+            <v-list-item v-if="user!=null" prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
+            <v-list-item v-if="user!=null" prepend-icon="mdi-package" title="My products" value="My products" href="my-products"></v-list-item>
+            <v-list-item v-if="user!=null" prepend-icon="mdi-package" title="My orders" value="My orders" href="my-orders"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
@@ -116,8 +117,10 @@ export default {
         id:0,
         shoppingCart:[],
         user:JSON.parse(localStorage.getItem('user'))
-        }
+        },
+        user: JSON.parse(localStorage.getItem('user'))
        }
+       
     },
     mounted(){
       if(localStorage.getItem('user') != null)
@@ -138,6 +141,8 @@ export default {
           this.$store.commit('setShoppingCart', value )
         }
     }
+
+
       
     },
     

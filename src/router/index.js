@@ -62,4 +62,28 @@ const router = createRouter({
     routes : routeInfos
 })
 
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/login', '/register','/home','/results','/test'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = localStorage.getItem('user');
+
+
+    
+    if (authRequired && !loggedIn) {
+        return next('/login');
+    }
+
+    if (to.path == '/login' && loggedIn) {
+        return next('/home');
+    }
+
+    if (to.path == '/register' && loggedIn) {
+        return next('/home');
+    }
+    
+
+    next();
+});
+
+
 export default router;
