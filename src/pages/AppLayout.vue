@@ -51,6 +51,12 @@
             @click.stop="logout">
             
         </v-btn>
+        <v-btn
+        v-if="user==null"
+            icon="mdi-login"
+            @click.stop="login">
+            
+        </v-btn>
       </v-app-bar>
 
         <v-navigation-drawer
@@ -60,7 +66,7 @@
 
           <v-list-item
             prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
-            title="John Leider">
+            :title="user==null?'Not logged in!':user.name">
           </v-list-item>
 
           <v-divider></v-divider>
@@ -69,7 +75,7 @@
             <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home" href="home"></v-list-item>
             <v-list-item v-if="user!=null" prepend-icon="mdi-pencil" title="Create" value="Create" href="create"></v-list-item>
             <v-list-item v-if="user!=null" prepend-icon="mdi-package" title="My products" value="My products" href="my-products"></v-list-item>
-            <v-list-item v-if="user!=null" prepend-icon="mdi-package" title="My orders" value="My orders" href="my-orders"></v-list-item>
+            <v-list-item v-if="user!=null" prepend-icon="mdi-note" title="My orders" value="My orders" href="my-orders"></v-list-item>
           </v-list>
 
         </v-navigation-drawer>
@@ -149,6 +155,10 @@ export default {
     methods: {
       logout() {
         localStorage.removeItem('user');
+        this.$router.push('/login')
+      },
+
+      login() {
         this.$router.push('/login')
       },
       createOrder() {
