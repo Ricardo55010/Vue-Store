@@ -38,6 +38,8 @@
       </v-row>
       <v-spacer>         
       <v-btn  color="teal-darken-4" @click="login" > Login</v-btn>
+
+      <v-btn  color="teal-darken-2" @click="register" > Register</v-btn>
     </v-spacer>
 
   </form>
@@ -78,7 +80,10 @@ import UserService from '@/services/UserService';
           }
           )
           
-        }
+        },
+        register(){
+            this.$router.push('/register');
+          }
     } 
    
 

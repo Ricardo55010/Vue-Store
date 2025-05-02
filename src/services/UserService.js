@@ -14,7 +14,7 @@ class UserService{
         )
     }
     postUser(user){
-      return axios.post(Util.urlAPI()+"/User",user,{ headers: authHeader() }).then(res=> {
+      return axios.post(Util.urlAPI()+"/User",user).then(res=> {
        console.log("Created" + res.data)
        console.log(res.data)
        return res.data

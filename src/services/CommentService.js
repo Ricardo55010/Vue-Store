@@ -4,6 +4,7 @@ import Util from './Util'
 class ProductService{
     getCommentsById(id){
       return  axios.get(Util.urlAPI()+"/comment/"+id,{ headers: authHeader() })
+      .then(Util.handleResponse)
       .then(res=> {
         console.log(res.data)
         return res.data
@@ -16,7 +17,9 @@ class ProductService{
 
 
      postComment(comment){
-        axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() }).then(res=> {
+        axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() })
+        .then(Util.handleResponse)
+        .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
@@ -26,7 +29,9 @@ class ProductService{
        )
      }
      deleteComment(comment){
-        axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() }).then(res=> {
+        axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() })
+        .then(Util.handleResponse)
+        .then(res=> {
          console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{
