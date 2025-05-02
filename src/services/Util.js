@@ -1,18 +1,19 @@
 class Utils {
     logout() {
         localStorage.removeItem('user');
-        localStorage.removeItem('token');
+        localStorage.removeItem('access_token');
     }
 
     handleResponse(response) {
+        console.log(response.status);
         if (response.status === 401) {
             this.logout();
             location.reload(true);
 
-            const error = response.data && response.data.message;
-            return Promise.reject(error);
+//            const error = response.data && response.data.message;
+//            return Promise.reject(error);
         }
-        return Promise.resolve(response);
+//        return Promise.resolve(response);
     }
 
     urlAPI() {

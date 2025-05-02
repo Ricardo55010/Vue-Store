@@ -4,13 +4,11 @@ import Util from './Util'
 class ProductService{
     getCommentsById(id){
       return  axios.get(Util.urlAPI()+"/comment/"+id,{ headers: authHeader() })
-      .then(Util.handleResponse)
       .then(res=> {
         console.log(res.data)
         return res.data
       }).catch( error=>{
-       console.log("Not found, error:" + error.status)
-       
+        Util.handleResponse(error)
       }
       )
   }
@@ -18,25 +16,21 @@ class ProductService{
 
      postComment(comment){
         axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("Error:" + error.status)
-        
+        Util.handleResponse(error)
        }
        )
      }
      deleteComment(comment){
         axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
          console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("Error:" + error.status)
-        
+        Util.handleResponse(error)
        }
        )
      }

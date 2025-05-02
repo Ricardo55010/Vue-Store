@@ -37,8 +37,7 @@ class UserService{
       localStorage.setItem('token',JSON.stringify(res.data));
       return res.data   
    }).catch( error=>{
-    console.log("Error not logged:" + error.status)
-    
+      Util.handleResponse(error)
    })
   }
 

@@ -5,13 +5,11 @@ class ShoppingProductService{
      getShopping(id){
       console.log("Tu id" + id)
         return  axios.get(Util.urlAPI()+"/ShoppingCart/"+id,{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
           console.log(res.data)
           return res.data
         }).catch( error=>{
-         console.log("Not found, error:" + error.status)
-         
+          Util.handleResponse(error)
         }
         )
     }
@@ -19,26 +17,22 @@ class ShoppingProductService{
 
      postShopping(ShoppingCart){
         axios.post(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("Error:" + error.status)
-        
+        Util.handleResponse(error)
        }
        )
      }
 
      patchShopping(ShoppingCart){
       axios.patch(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
-      .then(Util.handleResponse)
       .then(res=> {
          console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("Errror:" + error.status)
-        
+        Util.handleResponse(error)
        }
        )
      }

@@ -22,6 +22,7 @@
     >
       <template v-slot:activator="{ props }">
         <v-btn
+          v-if="user!=null"
           color="white"
           v-bind="props"
           icon="mdi-shopping"

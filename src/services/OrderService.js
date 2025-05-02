@@ -4,13 +4,11 @@ import Util from './Util'
 class OrderService{
      getOrders(id){
         return  axios.get(Util.urlAPI()+"/Order/"+id,{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
           console.log(res.data)
           return res.data
         }).catch( error=>{
-         console.log("Not found, error:" + error.status)
-         
+          Util.handleResponse(error)
         }
         )
     }
@@ -18,13 +16,11 @@ class OrderService{
 
      postOrder(Order){
         axios.post(Util.urlAPI()+"/Order",Order,{ headers: authHeader() })
-        .then(Util.handleResponse)
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
-        console.log("Error:" + error.status)
-        
+        Util.handleResponse(error)
        }
        )
      }
