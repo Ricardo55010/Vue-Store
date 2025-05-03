@@ -12,7 +12,7 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
-              {{ order.shoppingCart }}
+              {{ order.productList }}
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">

@@ -89,6 +89,7 @@
 
           <div  class="d-flex justify-center align-center">
             <v-container>
+              {{ order }}
                 <router-view></router-view>
               
 
@@ -125,7 +126,7 @@ export default {
        search: "",
        order:{
         id:0,
-        shoppingCart:[],
+        productList:[],
         user:JSON.parse(localStorage.getItem('user'))
         },
         user: JSON.parse(localStorage.getItem('user'))
@@ -137,7 +138,7 @@ export default {
       ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
       .then(shoppingCart => {this.$store.commit('setShoppingCart', shoppingCart)
         return shoppingCart
-      }).then(shoppingCart => this.order.shoppingCart = shoppingCart);
+      }).then(shoppingCart => this.order.productList = shoppingCart.productList);
     },
     computed: {
       result(){
@@ -168,7 +169,7 @@ export default {
       },
       createOrder() {
         console.log(this.order)
-        OrderService.postOrder(this.order)
+        OrderService.postOrder(this.order).then((order) => this.order = order)
       }
     }
   }
