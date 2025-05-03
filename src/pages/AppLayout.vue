@@ -129,8 +129,9 @@ export default {
         productList:[],
         user:JSON.parse(localStorage.getItem('user'))
         },
-        user: JSON.parse(localStorage.getItem('user'))
+        user: JSON.parse(localStorage.getItem('user')),
        }
+       
        
     },
     mounted(){
@@ -167,9 +168,14 @@ export default {
       login() {
         this.$router.push('/login')
       },
-      createOrder() {
+      async createOrder() {
         console.log(this.order)
-        OrderService.postOrder(this.order).then((order) => this.order = order)
+        await OrderService.postOrder(this.order)
+        this.shoppingCart = this.$store.state.shoppingCart
+        console.log(this.shoppingCart)
+        this.shoppingCart.productList = []
+        await ShoppingCartService.patchShopping(this.shoppingCart);
+        location.reload(true);
       }
     }
   }
