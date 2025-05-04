@@ -76,7 +76,8 @@ import UserService from '@/services/UserService';
           UserService.login(this.User).then( () =>{
             console.log("logged in");
             localStorage.setItem('user',JSON.stringify(this.User));
-            this.$router.push('/');
+            this.$router.push('/home');
+            location.reload(true);
           }
           )
           

@@ -163,6 +163,7 @@ export default {
         localStorage.removeItem('user');
         localStorage.removeItem('access_token');
         this.$router.push('/login')
+        location.reload(true);
       },
 
       login() {
