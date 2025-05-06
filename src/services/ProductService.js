@@ -23,8 +23,8 @@ class ProductService{
       }
       )
   }
-    searchProducts(x){
-      return  axios.get(Util.urlAPI()+"/search/"+x,{ headers: authHeader() })
+    searchProducts(x,page=0){
+      return  axios.get(Util.urlAPI()+"/search/"+x+"?page="+page,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
