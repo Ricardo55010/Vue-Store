@@ -126,25 +126,7 @@ export default {
     };
   },
   methods: {
-    addCategory(x){
-      this.newProduct.categories.push(x)
-      this.snackbar = true;
-      this.snackbarText = "Category " + x.name+ " added"
-    },
-    deleteCategory(x){
-      this.newProduct.categories.splice(this.newProduct.categories.indexOf(x),1)
-      this.snackbar = true;
-      this.snackbarText = "Category " + x.name+ " deleted"
-    }
-    ,
-    postProduct() {
-        this.message = "New product created!";
-        ProductService.postProduct(this.newProduct)
-        this.$store.commit('increment')
-        console.log("projects created: " +this.$store.state.count)
 
-      
-    },
     addToShoppingCar(){
       if(this.$store.state.shoppingCart.id==''){
         this.$store.state.shoppingCart.productList.push(this.newProduct)
@@ -154,12 +136,18 @@ export default {
         this.$store.state.shoppingCart.productList.push(this.newProduct)
         ShoppingCartService.patchShopping(this.$store.state.shoppingCart);
       }
-        
+      this.showSnackBar("Product added to Shopping cart")
       },
-      addComment(){
+    addComment(){
       this.comment.product.id = this.newProduct.id
       CommentService.postComment(this.comment)
-  }
+      this.showSnackBar("Comment added")
+      location.reload(true);
+    },
+    showSnackBar(msg){
+      this.snackbar = true;
+      this.snackbarText = msg
+    }
   },
 
   mounted(){

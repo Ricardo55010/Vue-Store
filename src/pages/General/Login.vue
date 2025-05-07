@@ -72,15 +72,14 @@ import UserService from '@/services/UserService';
         
     },
     methods: {
-        login(){
-          UserService.login(this.User).then( () =>{
-            console.log("logged in");
-            localStorage.setItem('user',JSON.stringify(this.User));
-            this.$router.push('/home');
-            location.reload(true);
-          }
-          )
-          
+        async login(){
+          await UserService.login(this.User)
+          this.User = await UserService.getUser()
+          console.log("logged in");
+          localStorage.setItem('user',JSON.stringify(this.User));
+          this.$router.push('/home');
+          location.reload(true);
+
         },
         register(){
             this.$router.push('/register');

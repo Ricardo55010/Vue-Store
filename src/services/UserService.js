@@ -2,8 +2,8 @@ import axios from 'axios'
 import authHeader from './AuthHeader'
 import Util from './Util'
 class UserService{
-     getUse(id){
-        return  axios.get(Util.urlAPI()+"/User/"+id,{ headers: authHeader() })
+     getUser(){
+        return  axios.get(Util.urlAPI()+"/Auth",{ headers: authHeader() })
         .then(res=> {
           console.log(res.data)
           return res.data

@@ -32,13 +32,13 @@
       </template>
 
       <v-list>
+        <v-list-item>
+          Shopping cart for:
+          <v-list-item-title> {{user.name}}</v-list-item-title>
+        </v-list-item>
         <v-list-item v-for="product in shoppingCart.productList" v-bind:key="product.id">
           {{ product.id }}
           <v-list-item-title>{{product.name}}</v-list-item-title>
-        </v-list-item>
-        <v-list-item
-        >Example 1
-          <v-list-item-title> Title 1</v-list-item-title>
         </v-list-item>
         <v-list-item
         >
@@ -108,6 +108,22 @@
           </v-container>
  
     </v-footer>
+    <v-snackbar 
+      v-model="snackbar"
+      multi-line
+    >
+      {{ snackbarText }}
+
+      <template v-slot:actions>
+        <v-btn
+          color="red"
+          variant="text"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     </v-app>
 </template>
 
@@ -124,6 +140,8 @@ export default {
     return {
        drawer : "",
        search: "",
+       snackbar : false,
+       snackbarText:"",
        order:{
         id:0,
         productList:[],
@@ -176,8 +194,13 @@ export default {
         console.log(this.shoppingCart)
         this.shoppingCart.productList = []
         await ShoppingCartService.patchShopping(this.shoppingCart);
-        location.reload(true);
-      }
+        this.showSnackBar("Order created");
+        setTimeout(() => location.reload(true), 2000);
+      },
+      showSnackBar(msg){
+      this.snackbar = true;
+      this.snackbarText = msg
+    }
     }
   }
 

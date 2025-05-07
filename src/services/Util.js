@@ -1,7 +1,7 @@
 class Utils {
     logout() {
         localStorage.removeItem('user');
-        localStorage.removeItem('access_token');
+        localStorage.removeItem('token');
     }
 
     handleResponse(response) {
