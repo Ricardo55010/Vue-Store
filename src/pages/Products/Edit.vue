@@ -46,7 +46,7 @@
         
       </div>
     </v-row>
-      <v-btn @click="patchProduct" color="teal-darken-4"> Create</v-btn>
+      <v-btn @click="patchProduct" color="teal-darken-4"> Update</v-btn>
     
   </form>
   </v-card>
@@ -117,14 +117,23 @@ export default {
       this.snackbarText = "Category " + x.name+ " deleted"
     }
     ,
-    patchProduct() {
-        this.message = "New product created!";
-        ProductService.patchProduct(this.newProduct)
-        this.$store.commit('increment')
-        console.log("projects created: " +this.$store.state.count)
+    async patchProduct() {
+        const res = await ProductService.patchProduct(this.newProduct)
 
+        if(res.status != 400){
+          this.$store.commit('increment')
+          console.log("projects updated: " +this.$store.state.count)
+          setTimeout( () => this.$router.push({ path: '/login'}), 2000);
+          this.showSnackBar("Product updated")
+        }else{
+          this.showSnackBar("Product not updated: " +res.response.data )
+        }
       
     },
+    showSnackBar(msg){
+      this.snackbar = true;
+      this.snackbarText = msg
+    }
 
   },
   mounted(){

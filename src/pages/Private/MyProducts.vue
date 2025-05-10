@@ -17,7 +17,7 @@
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
               {{ product.quantity }} 
-              {{ product.categories[0].name }}
+              {{ product.categories[0]?.name }}
           </v-col>
         </v-row>
 
@@ -44,7 +44,7 @@ import ProductService from '@/services/ProductService';
     }},
     methods: {
       link(id){
-      return "product?id="+id;
+      return "edit?id="+id;
     } 
   },
     mounted(){

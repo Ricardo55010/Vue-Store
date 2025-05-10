@@ -44,6 +44,22 @@
 
   </form>
   </v-card>
+  <v-snackbar 
+      v-model="snackbar"
+      multi-line
+    >
+      {{ snackbarText }}
+
+      <template v-slot:actions>
+        <v-btn
+          color="red"
+          variant="text"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </template>
 
   <script>
@@ -65,7 +81,9 @@ import UserService from '@/services/UserService';
               name: "Ricardo",
               email: "",
               password: ""
-          }
+          },
+          snackbar : false,
+          snackbarText:""
       }
     },
     mounted(){
@@ -79,11 +97,15 @@ import UserService from '@/services/UserService';
           localStorage.setItem('user',JSON.stringify(this.User));
           this.$router.push('/home');
           location.reload(true);
-
+          
         },
         register(){
             this.$router.push('/register');
-          }
+          },
+      showSnackBar(msg){
+      this.snackbar = true;
+      this.snackbarText = msg
+    }
     } 
    
 

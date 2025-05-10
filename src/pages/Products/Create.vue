@@ -116,13 +116,19 @@ export default {
       this.showSnackBar("Category " + x.name+ " deleted")
     }
     ,
-    postProduct() {
-        this.message = "New product created!";
-        ProductService.postProduct(this.newProduct)
-        this.$store.commit('increment')
-        console.log("projects created: " +this.$store.state.count)
-        setTimeout( () => this.$router.push({ path: '/login'}), 2000);
-        this.showSnackBar("Product created")
+    async postProduct() {
+
+        const res = await ProductService.postProduct(this.newProduct)
+        console.log(res)
+        console.log(res.response.data)
+        if(res.status != 400){
+          this.$store.commit('increment')
+          console.log("projects created: " +this.$store.state.count)
+          setTimeout( () => this.$router.push({ path: '/login'}), 2000);
+          this.showSnackBar("Product created")
+        }else{
+          this.showSnackBar("Product not created: " +res.response.data )
+        }
     },
     showSnackBar(msg){
       this.snackbar = true;

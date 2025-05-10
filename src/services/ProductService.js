@@ -9,6 +9,7 @@ class ProductService{
           return res.data
         }).catch( error=>{
           Util.handleResponse(error)
+          return error
         }
         )
     }
@@ -19,7 +20,7 @@ class ProductService{
         return res.data
       }).catch( error=>{
         Util.handleResponse(error)
-       
+        return error
       }
       )
   }
@@ -30,6 +31,7 @@ class ProductService{
         return res.data
       }).catch( error=>{
         Util.handleResponse(error)
+        return error
       }
       )
   }
@@ -40,39 +42,41 @@ class ProductService{
       return res.data
     }).catch( error=>{
       Util.handleResponse(error)
-     
+      return error
     }
     )
 }
 
      postProduct(newProduct){
-        axios.post(Util.urlAPI()+"/products",newProduct,{ headers: authHeader() })
+        return axios.post(Util.urlAPI()+"/products",newProduct,{ headers: authHeader() })
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
-        
+        return error
        }
        )
      }
      deleteProduct(x){
-        axios.delete("http://localhost:8080/products",{data:x},{ headers: authHeader() })
+        return axios.delete("http://localhost:8080/products",{data:x},{ headers: authHeader() })
         .then(res=> {
          console.log("Deleted" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }
      patchProduct(updatedProduct){
-      axios.patch("http://localhost:8080/products",updatedProduct,{ headers: authHeader() })
+      return axios.patch("http://localhost:8080/products",updatedProduct,{ headers: authHeader() })
       .then(res=> {
          console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }
