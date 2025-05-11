@@ -188,6 +188,10 @@ export default {
         this.$router.push('/login')
       },
       async createOrder() {
+        if(this.order.productList.length == 0){
+          this.showSnackBar("Your cart is empty");
+          return
+        }
         console.log(this.order)
         await OrderService.postOrder(this.order)
         this.shoppingCart = this.$store.state.shoppingCart

@@ -91,7 +91,11 @@ import UserService from '@/services/UserService';
     },
     methods: {
         async login(){
-          await UserService.login(this.User)
+          const res = await UserService.login(this.User)
+          if(res.status == 401){
+            this.showSnackBar("Wrong password or email")
+            return;
+          }
           this.User = await UserService.getUser()
           console.log("logged in");
           localStorage.setItem('user',JSON.stringify(this.User));

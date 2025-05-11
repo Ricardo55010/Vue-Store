@@ -43,7 +43,8 @@
         
       </div>
     </v-row>
-      <v-btn @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
+      <v-btn v-if="user!=null" @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
+      <v-btn v-if="user==null" @click="login" color="teal-darken-4"> Want to share your thoughts, login!</v-btn>
     
   </form>
   </v-card>
@@ -91,7 +92,7 @@ export default {
        snackbarText:"",
        message: "",
        products: "",
-
+       user:  JSON.parse(localStorage.getItem('user')),
        items: [
         {id: 1, 
          name: "Tecnologia",
@@ -143,6 +144,9 @@ export default {
       CommentService.postComment(this.comment)
       this.showSnackBar("Comment added")
       location.reload(true);
+    },
+    login(){
+      this.$router.push('/login')
     },
     showSnackBar(msg){
       this.snackbar = true;

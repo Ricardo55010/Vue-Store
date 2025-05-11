@@ -38,6 +38,7 @@ class UserService{
       return res.data   
    }).catch( error=>{
       Util.handleResponse(error)
+      return error
    })
   }
 

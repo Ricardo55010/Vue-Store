@@ -3,17 +3,30 @@
     <div v-for="order in orders" v-bind:key="order.id">
       <v-card  class="mb-3" :href="link(order.id)">
         <template v-slot:title>
-      <span class="font-weight-black">{{order.user}}</span>
+      <span class="font-weight-black">Bought by: {{order.user.name}}</span>
     </template>
         <v-card-text class="bg-surface-light pt-4">
           <v-row>
-            <v-col   cols="12" md="6" lg="4" xl="3">
-              <v-btn icon="mdi-image"></v-btn>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col   cols="12" md="6" lg="4" xl="3">
-              {{ order.productList }}
-          </v-col>
+
+          <v-col v-for="product in order.productList" v-bind:key="product.id"   cols="12" md="6" lg="4" xl="3">
+              <v-card  class="mb-3" :href="link(product.id)">
+                <template v-slot:title>
+                  <span class="font-weight-black">{{product.name}}</span>
+                </template>
+                <v-card-text class="bg-surface-light pt-4 ">
+                  <v-row>
+                    <v-spacer></v-spacer>
+                    <v-col   cols="12" md="6" lg="4" xl="3">
+                      <v-btn icon="mdi-image"></v-btn>
+                    </v-col>
+                    <v-spacer></v-spacer>
+                  </v-row>
+
+                </v-card-text>
+
+              </v-card>
+                          
+            </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
               {{ order.id}} 
