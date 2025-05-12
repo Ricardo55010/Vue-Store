@@ -11,41 +11,41 @@
         v-model="newProduct.name"
         label="Name"
         required
+        :readonly="true"
       ></v-text-field>
       <v-text-field
         v-model="newProduct.quantity"
         label="Quantity"
         required
+        :readonly="true"
       ></v-text-field>
       <v-text-field
         v-model="newProduct.description"
         label="Description"
         required
+        :readonly="true"
       ></v-text-field>
-      
-      <v-row>
-        <v-col>
-          <v-text-field
-        v-model="comment.comment"
-        label="Comments"
-        required
-      ></v-text-field>
-        </v-col>
-        <v-col>
-                
-      <v-btn @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="mb-5 d-flex justify-center" >
+            <v-row class="mb-5 d-flex justify-center" >
       <div v-for="element in newProduct.categories" v-bind:key="element.id">
         
-        <v-chip><v-btn icon="mdi-delete" @click="deleteCategory(element)"></v-btn>{{element.name}}</v-chip>
+        <v-chip>{{element.name}}</v-chip>
         
       </div>
     </v-row>
+      <v-row>
+        <v-col>
+          <v-textarea
+        v-model="comment.comment"
+        label="Comments"
+        required
+      ></v-textarea>
+        </v-col>
+
+      </v-row>
+
       <v-btn v-if="user!=null" @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
       <v-btn v-if="user==null" @click="login" color="teal-darken-4"> Want to share your thoughts, login!</v-btn>
-    
+      <v-btn v-if="user!=null" @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
   </form>
   </v-card>
 {{ newProduct }}

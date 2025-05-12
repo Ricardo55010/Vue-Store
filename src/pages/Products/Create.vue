@@ -120,14 +120,19 @@ export default {
 
         const res = await ProductService.postProduct(this.newProduct)
         console.log(res)
-        console.log(res.response.data)
         if(res.status != 400){
           this.$store.commit('increment')
           console.log("projects created: " +this.$store.state.count)
           setTimeout( () => this.$router.push({ path: '/login'}), 2000);
           this.showSnackBar("Product created")
         }else{
-          this.showSnackBar("Product not created: " +res.response.data )
+          const propertyNames = Object.keys(res.response.data);
+          var msgValidations = ""
+          for (var i = 0; i < propertyNames.length; i++) {
+              var value = res.response.data[propertyNames[i]];
+              msgValidations = msgValidations+value
+          }
+          this.showSnackBar("Product not created:" + msgValidations )
         }
     },
     showSnackBar(msg){

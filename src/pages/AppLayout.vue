@@ -157,7 +157,7 @@ export default {
       ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
       .then(shoppingCart => {this.$store.commit('setShoppingCart', shoppingCart)
         return shoppingCart
-      }).then(shoppingCart => this.order.productList = shoppingCart.productList);
+      }).then(shoppingCart => this.order.productList = shoppingCart?.productList);
     },
     computed: {
       result(){
