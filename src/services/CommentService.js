@@ -15,7 +15,7 @@ class ProductService{
 
 
      postComment(comment){
-        axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() })
+        return axios.post(Util.urlAPI()+"/comment",comment,{ headers: authHeader() })
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
@@ -24,8 +24,20 @@ class ProductService{
        }
        )
      }
+
+     addSubComment(comment,id){
+        return axios.patch(Util.urlAPI()+"/comment/subComment/"+id,comment,{ headers: authHeader() })
+        .then(res=> {
+         console.log("SubCommentCreated" + res.data)
+         return res.data
+       }).catch( error=>{
+        Util.handleResponse(error)
+       }
+       )
+     }
+
      deleteComment(comment){
-        axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() })
+        return axios.delete(Util.urlAPI()+"/comment",{data:comment},{ headers: authHeader() })
         .then(res=> {
          console.log("Deleted" + res.data)
          return res.data

@@ -60,6 +60,30 @@
       <span class="font-weight-black">Si</span>
     </template>
     {{ comment.comment }}
+    <v-spacer></v-spacer>
+              <v-text-field
+        v-model="subComment.comment"
+        label="Comments"
+        required
+      ></v-text-field>
+    <v-btn icon="mdi-reply" @click="addSubComment(comment.id)" ></v-btn>
+    <v-card v-for="comment in comment.comments" v-bind:key="comment.id">
+    <template v-slot:title>
+      <span class="font-weight-black">Reply from:{{comment.user.name}}</span>
+    </template>
+    <template v-slot:subtitle>
+      <span class="font-weight-black">Si</span>
+    </template>
+    {{ comment.comment }}
+    <v-spacer></v-spacer>
+              <v-text-field
+        v-model="subComment.comment"
+        label="Comments"
+        required
+      ></v-text-field>
+    <v-btn icon="mdi-reply" @click="addSubComment(comment.id)" ></v-btn>
+    
+  </v-card>
   </v-card>
 
 <v-snackbar 
@@ -122,6 +146,15 @@ export default {
             id:""
           }
        },
+       subComment:{
+          id :"",
+          comment:"",
+          user:JSON.parse(localStorage.getItem('user')),
+          product: {
+            id:""
+          }
+
+       },
        comments:[],
        option : 0
     };
@@ -143,6 +176,13 @@ export default {
       this.comment.product.id = this.newProduct.id
       CommentService.postComment(this.comment)
       this.showSnackBar("Comment added")
+      location.reload(true);
+    },
+    addSubComment(id){
+      this.subComment.product.id = this.newProduct.id
+      alert(this.subComment.comment)
+      CommentService.addSubComment(this.subComment,id)
+      this.showSnackBar("SubComment added")
       location.reload(true);
     },
     login(){
