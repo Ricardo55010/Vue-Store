@@ -52,39 +52,7 @@
 
 {{ comments }}
 
-<v-card v-for="comment in comments" v-bind:key="comment.id">
-    <template v-slot:title>
-      <span class="font-weight-black">{{comment.user.name}}</span>
-    </template>
-    <template v-slot:subtitle>
-      <span class="font-weight-black">Si</span>
-    </template>
-    {{ comment.comment }}
-    <v-spacer></v-spacer>
-              <v-text-field
-        v-model="subComment.comment"
-        label="Comments"
-        required
-      ></v-text-field>
-    <v-btn icon="mdi-reply" @click="addSubComment(comment.id)" ></v-btn>
-    <v-card v-for="comment in comment.comments" v-bind:key="comment.id">
-    <template v-slot:title>
-      <span class="font-weight-black">Reply from:{{comment.user.name}}</span>
-    </template>
-    <template v-slot:subtitle>
-      <span class="font-weight-black">Si</span>
-    </template>
-    {{ comment.comment }}
-    <v-spacer></v-spacer>
-              <v-text-field
-        v-model="subComment.comment"
-        label="Comments"
-        required
-      ></v-text-field>
-    <v-btn icon="mdi-reply" @click="addSubComment(comment.id)" ></v-btn>
-    
-  </v-card>
-  </v-card>
+<Comments :comments="comments"></Comments>
 
 <v-snackbar 
       v-model="snackbar"
@@ -107,8 +75,9 @@
 import ProductService from '@/services/ProductService';
 import ShoppingCartService from '@/services/ShoppingCartService';
 import CommentService from '@/services/CommentService';
+import Comments from '@/components/Sections/Comments.vue';
 export default {
-    
+    components: {Comments},
     data() {
     return {
        name: "Nope",
