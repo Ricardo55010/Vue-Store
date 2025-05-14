@@ -14,7 +14,22 @@
         required
       ></v-text-field>
     <v-btn icon="mdi-reply" @click="addSubComment(comment)" ></v-btn>
+    <v-snackbar 
+      v-model="snackbar"
+      multi-line
+    >
+      {{ snackbarText }}
 
+      <template v-slot:actions>
+        <v-btn
+          color="red"
+          variant="text"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 </v-card>
 </template>
 
@@ -39,7 +54,9 @@ export default {
                 },
                 comments: [],
                 parentComment_id:""
-            }
+            },
+            snackbar : false,
+            snackbarText: ""
         }
     },
     methods: {
@@ -48,7 +65,7 @@ export default {
         this.subComment.product.id = comment.product.id
         await CommentService.addSubComment(this.subComment,comment.id)
         this.showSnackBar("SubComment added")
-        location.reload(true);
+        setTimeout(() => location.reload(true), 3000)
     },
     showSnackBar(msg){
       this.snackbar = true;

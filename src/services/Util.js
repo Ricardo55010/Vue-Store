@@ -5,10 +5,10 @@ class Utils {
     }
 
     handleResponse(response) {
-        console.log(response.status);
+        console.log(response.status)
         if (response.status === 401) {
             this.logout();
-            location.reload(true);
+            setTimeout(() => location.reload(true), 2000)
 
 //            const error = response.data && response.data.message;
 //            return Promise.reject(error);
