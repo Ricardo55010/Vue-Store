@@ -115,15 +115,6 @@ export default {
             id:""
           }
        },
-       subComment:{
-          id :"",
-          comment:"",
-          user:JSON.parse(localStorage.getItem('user')),
-          product: {
-            id:""
-          }
-
-       },
        comments:[],
        option : 0
     };
@@ -147,13 +138,7 @@ export default {
       this.showSnackBar("Comment added")
       location.reload(true);
     },
-    addSubComment(id){
-      this.subComment.product.id = this.newProduct.id
-      alert(this.subComment.comment)
-      CommentService.addSubComment(this.subComment,id)
-      this.showSnackBar("SubComment added")
-      location.reload(true);
-    },
+
     login(){
       this.$router.push('/login')
     },
