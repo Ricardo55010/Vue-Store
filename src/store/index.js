@@ -16,7 +16,8 @@ const store = createStore({
       snackbar:{
         status : false,
         text:""
-      }
+      },
+      drawer:"",
       
     }
   },
@@ -41,7 +42,9 @@ const store = createStore({
       state.snackbar.status = true
       state.snackbar.text = msgToSet
     },
-
+    setDrawer(state,drawerToSet){
+      state.drawer = drawerToSet
+    }
 
     
   }

@@ -11,7 +11,7 @@
 <script>
 import Comment from '../Element/Comment.vue'
 export default {
-    name: 'CommentComponent',
+    name: 'CommentsSection',
     props: {
         comments: {
             type: Array,
