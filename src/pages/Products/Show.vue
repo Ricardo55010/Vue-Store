@@ -54,22 +54,7 @@
 
 <Comments :comments="comments"></Comments>
 
-<v-snackbar 
-      v-model="snackbar"
-      multi-line
-    >
-      {{ snackbarText }}
 
-      <template v-slot:actions>
-        <v-btn
-          color="red"
-          variant="text"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
 </template>
 <script>
 import ProductService from '@/services/ProductService';
@@ -81,8 +66,6 @@ export default {
     data() {
     return {
        name: "Nope",
-       snackbar : false,
-       snackbarText:"",
        message: "",
        products: "",
        user:  JSON.parse(localStorage.getItem('user')),
@@ -130,22 +113,19 @@ export default {
         this.$store.state.shoppingCart.productList.push(this.newProduct)
         ShoppingCartService.patchShopping(this.$store.state.shoppingCart);
       }
-      this.showSnackBar("Product added to Shopping cart")
+      this.$store.commit('setSnackbar',"Product added to Shopping cart")
       },
     addComment(){
       this.comment.product.id = this.newProduct.id
       CommentService.postComment(this.comment)
-      this.showSnackBar("Comment added")
+      this.$store.commit('setSnackbar',"Comment added")
       location.reload(true);
     },
 
     login(){
       this.$router.push('/login')
     },
-    showSnackBar(msg){
-      this.snackbar = true;
-      this.snackbarText = msg
-    }
+
   },
 
   mounted(){

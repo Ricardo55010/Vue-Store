@@ -31,6 +31,9 @@ import ProductService from '@/services/ProductService';
         this.$store.commit('setProducts',products)
       });
 
+    },
+    methods: {
+
     }
 
 

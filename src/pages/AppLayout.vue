@@ -106,28 +106,14 @@
           Todos los derechos reservados
         
           </v-container>
- 
+      <Snackbar></Snackbar>
     </v-footer>
-    <v-snackbar 
-      v-model="snackbar"
-      multi-line
-    >
-      {{ snackbarText }}
-
-      <template v-slot:actions>
-        <v-btn
-          color="red"
-          variant="text"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+    
     </v-app>
 </template>
 
 <script>
+import Snackbar from '@/components/Element/Snackbar.vue';
 import OrderService from '@/services/OrderService';
 import ShoppingCartService from '@/services/ShoppingCartService'
 import '@mdi/font/css/materialdesignicons.css'
@@ -136,12 +122,13 @@ export default {
   props: {
     msg: String
   },
+  components: {
+    Snackbar
+  },
   data() {
     return {
        drawer : "",
        search: "",
-       snackbar : false,
-       snackbarText:"",
        order:{
         id:0,
         productList:[],
@@ -169,10 +156,9 @@ export default {
         },
         set (value) {
           this.$store.commit('setShoppingCart', value )
-        }
-    }
+        },
 
-
+    },
       
     },
     
@@ -200,13 +186,10 @@ export default {
         await ShoppingCartService.patchShopping(this.shoppingCart);
         this.showSnackBar("Order created");
         setTimeout(() => location.reload(true), 2000);
-      },
-      showSnackBar(msg){
-      this.snackbar = true;
-      this.snackbarText = msg
+      }
     }
-    }
-  }
+}
+  
 
 </script>
 

@@ -52,22 +52,6 @@
   </v-card>
 {{ newProduct }}
 
-<v-snackbar 
-      v-model="snackbar"
-      multi-line
-    >
-      {{ snackbarText }}
-
-      <template v-slot:actions>
-        <v-btn
-          color="red"
-          variant="text"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
 </template>
 <script>
 import ProductService from '@/services/ProductService';
@@ -76,8 +60,6 @@ export default {
     data() {
     return {
        name: "Nope",
-       snackbar : false,
-       snackbarText:"",
        message: "",
        products: "",
 
@@ -124,17 +106,12 @@ export default {
           this.$store.commit('increment')
           console.log("projects updated: " +this.$store.state.count)
           setTimeout( () => this.$router.push({ path: '/login'}), 2000);
-          this.showSnackBar("Product updated")
+          this.$store.commit('setSnackbar',"Product updated: " +res.response.data)
         }else{
-          this.showSnackBar("Product not updated: " +res.response.data )
+          this.$store.commit('setSnackbar',"Product not updated: " +res.response.data)
         }
       
     },
-    showSnackBar(msg){
-      this.snackbar = true;
-      this.snackbarText = msg
-    }
-
   },
   mounted(){
       const urlParams = new URLSearchParams(window.location.search);

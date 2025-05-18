@@ -12,7 +12,12 @@ const store = createStore({
           id:'',
           productList:[],
           user:JSON.parse(localStorage.getItem('user'))
+      },
+      snackbar:{
+        status : false,
+        text:""
       }
+      
     }
   },
   mutations: {
@@ -30,7 +35,13 @@ const store = createStore({
         state.shoppingCart = shoppingCart;
       }
       
-    }
+    },
+    setSnackbar(state,msgToSet){
+      alert(msgToSet)
+      state.snackbar.status = true
+      state.snackbar.text = msgToSet
+    },
+
 
     
   }

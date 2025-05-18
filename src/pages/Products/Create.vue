@@ -52,22 +52,6 @@
   </v-card>
 {{ newProduct }}
 
-<v-snackbar 
-      v-model="snackbar"
-      multi-line
-    >
-      {{ snackbarText }}
-
-      <template v-slot:actions>
-        <v-btn
-          color="red"
-          variant="text"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
 </template>
 <script>
 import ProductService from '@/services/ProductService';
@@ -76,8 +60,6 @@ export default {
     data() {
     return {
        name: "Nope",
-       snackbar : false,
-       snackbarText:"",
        message: "",
        products: "",
 
@@ -132,12 +114,8 @@ export default {
               var value = res.response.data[propertyNames[i]];
               msgValidations = msgValidations+value
           }
-          this.showSnackBar("Product not created:" + msgValidations )
+          this.$store.commit('setSnackbar',msgValidations)
         }
-    },
-    showSnackBar(msg){
-      this.snackbar = true;
-      this.snackbarText = msg
     }
 
   },

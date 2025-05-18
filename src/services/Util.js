@@ -6,6 +6,7 @@ class Utils {
 
     handleResponse(response) {
         console.log(response.status)
+        console.log(response)
         if (response.status === 401) {
             this.logout();
             setTimeout(() => location.reload(true), 2000)
