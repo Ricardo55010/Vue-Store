@@ -14,7 +14,6 @@ class Utils {
 //            const error = response.data && response.data.message;
 //            return Promise.reject(error);
         }
-//        return Promise.resolve(response);
     }
 
     urlAPI() {

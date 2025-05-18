@@ -115,9 +115,19 @@ export default {
       }
       this.$store.commit('setSnackbar',"Product added to Shopping cart")
       },
-    addComment(){
+    async addComment(){
       this.comment.product.id = this.newProduct.id
-      CommentService.postComment(this.comment)
+      const res = await CommentService.postComment(this.comment)
+      if(res.status == 400){
+        const propertyNames = Object.keys(res.response.data);
+          var msgValidations = ""
+          for (var i = 0; i < propertyNames.length; i++) {
+              var value = res.response.data[propertyNames[i]];
+              msgValidations = msgValidations+value
+          }
+          this.$store.commit('setSnackbar',msgValidations)
+          return
+      }
       this.$store.commit('setSnackbar',"Comment added")
       location.reload(true);
     },

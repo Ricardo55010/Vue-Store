@@ -63,7 +63,17 @@ export default {
 
     async addSubComment(comment){
         this.subComment.product.id = comment.product.id
-        await CommentService.addSubComment(this.subComment,comment.id)
+        const res = await CommentService.addSubComment(this.subComment,comment.id)
+        if(res.status == 400){
+          const propertyNames = Object.keys(res.response.data);
+          var msgValidations = ""
+          for (var i = 0; i < propertyNames.length; i++) {
+              var value = res.response.data[propertyNames[i]];
+              msgValidations = msgValidations+value
+          }
+          this.$store.commit('setSnackbar',msgValidations)
+          return
+        }
         this.showSnackBar("SubComment added")
         setTimeout(() => location.reload(true), 3000)
     },

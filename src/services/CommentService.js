@@ -9,6 +9,7 @@ class ProductService{
         return res.data
       }).catch( error=>{
         Util.handleResponse(error)
+        return error
       }
       )
   }
@@ -21,6 +22,7 @@ class ProductService{
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }
@@ -36,6 +38,7 @@ class ProductService{
         alert("caiste en error papu :v")
         alert(error.status)
         Util.handleResponse(error)
+        return error
        }
        )
      }
@@ -47,6 +50,7 @@ class ProductService{
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }
