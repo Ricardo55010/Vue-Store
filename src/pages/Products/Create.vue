@@ -91,11 +91,11 @@ export default {
   methods: {
     addCategory(x){
       this.newProduct.categories.push(x)
-      this.showSnackBar("Category " + x.name+ " added")
+      this.$store.commit('setSnackbar',"Category " + x.name+ " added")
     },
     deleteCategory(x){
       this.newProduct.categories.splice(this.newProduct.categories.indexOf(x),1)
-      this.showSnackBar("Category " + x.name+ " deleted")
+      this.$store.commit('setSnackbar',"Category " + x.name+ " deleted")
     }
     ,
     async postProduct() {
@@ -106,7 +106,7 @@ export default {
           this.$store.commit('increment')
           console.log("projects created: " +this.$store.state.count)
           setTimeout( () => this.$router.push({ path: '/login'}), 2000);
-          this.showSnackBar("Product created")
+          this.$store.commit('setSnackbar',"Product created: ")
         }else{
           const propertyNames = Object.keys(res.response.data);
           var msgValidations = ""

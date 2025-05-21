@@ -31,13 +31,24 @@
       </template>
 
       <v-list>
+        
         <v-list-item>
+          
           Shopping cart for:
           <v-list-item-title> {{user.name}}</v-list-item-title>
         </v-list-item>
-        <v-list-item v-for="product in shoppingCart.productList" v-bind:key="product.id">
-          {{ product.id }}
-          <v-list-item-title>{{product.name}}</v-list-item-title>
+        <v-list-item v-for="element in shoppingCart.productList" v-bind:key="element.id">
+          <v-row>
+              <v-col>
+              <v-list-item-title>{{element.product.name}}</v-list-item-title>
+              <v-list-item-subtitle>{{element.amount}}</v-list-item-subtitle>
+              </v-col>
+              <v-col>
+               <v-icon icon="mdi-gift"></v-icon>
+              </v-col>
+          </v-row>
+          
+          
         </v-list-item>
         <v-list-item
         >
@@ -108,7 +119,7 @@
       ShoppingCartService.getShopping(JSON.parse(localStorage.getItem('user')).id)
       .then(shoppingCart => {this.$store.commit('setShoppingCart', shoppingCart)
         return shoppingCart
-      }).then(shoppingCart => this.order.productList = shoppingCart?.productList);
+      })//.then(shoppingCart => this.order.productList = shoppingCart?.productList);
     },
     methods:{
       logout() {
@@ -122,11 +133,11 @@
         this.$router.push('/login')
       },
       async createOrder() {
-        if(this.order.productList.length == 0){
+        if(this.shoppingCart.productList.length == 0){
           this.$store.commit('setSnackbar',"Your cart is empty");
           return
         }
-        console.log(this.order)
+        this.Order = this.$store.state.shoppingCart
         await OrderService.postOrder(this.order)
         this.shoppingCart = this.$store.state.shoppingCart
         console.log(this.shoppingCart)

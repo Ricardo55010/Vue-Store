@@ -45,6 +45,7 @@
 
       <v-btn v-if="user!=null" @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
       <v-btn v-if="user==null" @click="login" color="teal-darken-4"> Want to share your thoughts, login!</v-btn>
+      <v-text-field v-model="wantedByUser" type="number" label="Wanted"></v-text-field>
       <v-btn v-if="user!=null" @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
   </form>
   </v-card>
@@ -69,6 +70,7 @@ export default {
        message: "",
        products: "",
        user:  JSON.parse(localStorage.getItem('user')),
+       wantedByUser:0,
        items: [
         {id: 1, 
          name: "Tecnologia",
@@ -106,11 +108,11 @@ export default {
 
     addToShoppingCar(){
       if(this.$store.state.shoppingCart.id==''){
-        this.$store.state.shoppingCart.productList.push(this.newProduct)
+        this.$store.state.shoppingCart.productList.push({product:this.newProduct,amount:this.wantedByUser})
         ShoppingCartService.postShopping(this.$store.state.shoppingCart);
       }
       else{
-        this.$store.state.shoppingCart.productList.push(this.newProduct)
+        this.$store.state.shoppingCart.productList.push({product:this.newProduct,amount:this.wantedByUser})
         ShoppingCartService.patchShopping(this.$store.state.shoppingCart);
       }
       this.$store.commit('setSnackbar',"Product added to Shopping cart")

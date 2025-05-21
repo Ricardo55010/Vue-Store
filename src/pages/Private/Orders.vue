@@ -1,5 +1,5 @@
   <template>
-    
+
     <div v-for="order in orders" v-bind:key="order.id">
       <v-card  class="mb-3" :href="link(order.id)">
         <template v-slot:title>
@@ -8,8 +8,9 @@
         <v-card-text class="bg-surface-light pt-4">
           <v-row>
 
-          <v-col v-for="product in order.productList" v-bind:key="product.id"   cols="12" md="6" lg="4" xl="3">
-              <v-card  class="mb-3" :href="link(product.id)">
+          <v-col v-for="product in orders.productList" v-bind:key="product.id"   cols="12" md="6" lg="4" xl="3">
+              
+            <v-card  class="mb-3" :href="link(product.id)">
                 <template v-slot:title>
                   <span class="font-weight-black">{{product.name}}</span>
                 </template>
