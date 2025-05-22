@@ -137,7 +137,7 @@
           this.$store.commit('setSnackbar',"Your cart is empty");
           return
         }
-        this.Order = this.$store.state.shoppingCart
+        this.order.productList = this.$store.state.shoppingCart.productList
         await OrderService.postOrder(this.order)
         this.shoppingCart = this.$store.state.shoppingCart
         console.log(this.shoppingCart)

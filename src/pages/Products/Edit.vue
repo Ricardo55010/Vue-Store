@@ -17,6 +17,11 @@
         label="Quantity"
         required
       ></v-text-field>
+      <v-text-field 
+        v-model="newProduct.price"
+        label="Price"
+        required
+      ></v-text-field>
       <v-text-field
         v-model="newProduct.description"
         label="Description"
@@ -80,6 +85,7 @@ export default {
        newProduct: {
           name: "ejemplo",
           quantity: 1,
+          price: 0,
           description: "ejemplo",
           id: 1,
           categories: []
