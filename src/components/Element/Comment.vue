@@ -6,7 +6,9 @@
     <template v-slot:subtitle>
       <span class="font-weight-black">Si</span>
     </template>
-    {{ comment.comment }}
+    {{ comment.comment }} 
+    <v-spacer></v-spacer>
+     Commented on:  {{comment.date }}
     <v-spacer></v-spacer>
               <v-text-field
         v-model="subComment.comment"

@@ -3,6 +3,8 @@
       <v-card  class="mb-3" :href="link(order.id)">
         <template v-slot:title>
       <span class="font-weight-black">Bought by: {{order.user.name}}</span>
+      <v-spacer></v-spacer>
+      <span class="font-weight-black">Bought : {{order.dateTime}}</span>
     </template>
         <v-card-text class="bg-surface-light pt-4">
           <v-row>
