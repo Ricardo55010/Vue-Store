@@ -47,8 +47,13 @@ class ProductService{
     )
 }
 
-     postProduct(newProduct){
-        return axios.post(Util.urlAPI()+"/products",newProduct,{ headers: authHeader() })
+     postProduct(newProduct,image){
+      console.log("*******************************")
+      console.log(newProduct)
+      const formdata = new FormData();
+      formdata.append("product", JSON.stringify(newProduct));
+      formdata.append("image", image);
+      return axios.post(Util.urlAPI()+"/products",formdata,{ headers: {'Content-Type': 'multipart/form-data',...authHeader()} })
         .then(res=> {
          console.log("Created" + res.data)
          return res.data

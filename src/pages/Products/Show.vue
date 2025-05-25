@@ -6,6 +6,7 @@
     <template v-slot:subtitle>
       <span class="font-weight-black">Please fill in the following parameters</span>
     </template>
+      <img :src="image()" width="100" height="100" />
     <form class="px-5 py-5">
       <v-text-field
         v-model="newProduct.name"
@@ -68,6 +69,7 @@ import ProductService from '@/services/ProductService';
 import ShoppingCartService from '@/services/ShoppingCartService';
 import CommentService from '@/services/CommentService';
 import Comments from '@/components/Sections/Comments.vue';
+
 export default {
     components: {Comments},
     data() {
@@ -144,6 +146,11 @@ export default {
     login(){
       this.$router.push('/login')
     },
+    image(){
+
+      
+      return "data:image/jpeg;base64," + this.newProduct.image
+    }
 
   },
 

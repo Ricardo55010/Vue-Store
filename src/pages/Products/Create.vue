@@ -27,7 +27,7 @@
         label="Description"
         required
       ></v-text-field>
-      
+       <input type="file" @change="handleFileUpload( $event )"/>
       <v-row>
         <v-col>
           <v-select return-object
@@ -67,15 +67,15 @@ export default {
        name: "Nope",
        message: "",
        products: "",
-
+       image: '',
        items: [
         {id: 1, 
          name: "Tecnologia",
-         description: "Lo mas actual"
+         //description: "Lo mas actual"
         },
         {id: 2, 
          name: "Deportes",
-         description: "Lo mas cool"
+         //description: "Lo mas cool"
         }],
        category: {
         id: "",
@@ -88,6 +88,7 @@ export default {
           price: 0,
           description: "ejemplo",
           id: 1,
+          image: [],
           categories: [],
           user: JSON.parse(localStorage.getItem('user'))
        },
@@ -104,9 +105,13 @@ export default {
       this.$store.commit('setSnackbar',"Category " + x.name+ " deleted")
     }
     ,
+
+    handleFileUpload(event){
+      this.image = event.target.files[0]
+      },
     async postProduct() {
 
-        const res = await ProductService.postProduct(this.newProduct)
+        const res = await ProductService.postProduct(this.newProduct,this.image)
         console.log(res)
         if(res.status != 400){
           this.$store.commit('increment')
