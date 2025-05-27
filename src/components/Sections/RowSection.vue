@@ -16,13 +16,13 @@
               <v-card  class="mb-3" :href="link(product.id)">
                 <template v-slot:title>
                   <span class="font-weight-black">{{product.name}}</span>
+                  
                 </template>
                 <v-card-text class="bg-surface-light pt-4 ">
                   <v-row>
                     <v-spacer></v-spacer>
-                    <v-col   cols="12" md="6" lg="4" xl="3">
-                      <v-btn icon="mdi-image"></v-btn>
-                    </v-col>
+                      <v-btn v-if="!product.image" icon="mdi-image"></v-btn>
+                      <v-img v-if="product.image" :src="image(product)" alt="product image" width="100" height="100" />
                     <v-spacer></v-spacer>
                   </v-row>
 
@@ -52,6 +52,11 @@
        
     }},
     methods:{
+      image(product){
+
+      
+      return "data:image/jpeg;base64," + product.image
+    },
       link(id){
       return "product?id="+id;
     } 

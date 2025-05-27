@@ -8,7 +8,8 @@
         <v-card-text class="bg-surface-light pt-4">
           <v-row>
             <v-col   cols="12" md="6" lg="4" xl="3">
-              <v-btn icon="mdi-image"></v-btn>
+              <v-btn v-if="!product.image" icon="mdi-image"></v-btn>
+              <v-img v-if="product.image" :src="image(product)" alt="product image" width="100" height="100" />
           </v-col>
           <v-spacer></v-spacer>
           <v-col   cols="12" md="6" lg="4" xl="3">
@@ -43,6 +44,11 @@ import ProductService from '@/services/ProductService';
        products: ""
     }},
     methods: {
+      image(product){
+
+      
+      return "data:image/jpeg;base64," + product.image
+    },
       link(id){
       return "edit?id="+id;
     } 

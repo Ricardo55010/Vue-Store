@@ -6,7 +6,8 @@
     <template v-slot:subtitle>
       <span class="font-weight-black">Please fill in the following parameters</span>
     </template>
-      <img :src="image()" width="100" height="100" />
+      <v-btn v-if="!newProduct.image" icon="mdi-image"></v-btn>
+      <img v-if="newProduct.image" :src="image(newProduct)" width="100" height="100" />
     <form class="px-5 py-5">
       <v-text-field
         v-model="newProduct.name"
@@ -34,7 +35,6 @@
       ></v-text-field>
             <v-row class="mb-5 d-flex justify-center" >
       <div v-for="element in newProduct.categories" v-bind:key="element.id">
-        
         <v-chip>{{element.name}}</v-chip>
         
       </div>
@@ -56,9 +56,6 @@
       <v-btn v-if="user!=null" @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
   </form>
   </v-card>
-{{ newProduct }}
-
-{{ comments }}
 
 <Comments :comments="comments"></Comments>
 
@@ -146,10 +143,10 @@ export default {
     login(){
       this.$router.push('/login')
     },
-    image(){
+    image(newProduct){
 
       
-      return "data:image/jpeg;base64," + this.newProduct.image
+      return "data:image/jpeg;base64," + newProduct.image
     }
 
   },
