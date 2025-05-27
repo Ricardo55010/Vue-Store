@@ -2,6 +2,9 @@
     <v-select  v-model="size" :items="[1,2,3]">
 
     </v-select>
+    <v-select  v-model="sortBy" :items="['id','name','price','quantity']">
+
+    </v-select>
     <div>
       
       <v-btn color="blue-grey-darken-4" @click="changePage(page-1)" v-for="page in payload.totalPages" :key="page">{{ page }}</v-btn>
@@ -23,8 +26,13 @@
             </v-col>
             <v-spacer></v-spacer>
             <v-col   cols="12" md="6" lg="4" xl="3">
-                {{ product.quantity }} 
+                Amount: {{ product.quantity }} 
+                
                 {{ product.categories[0].name }}
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col   cols="12" md="6" lg="4" xl="3">
+                price: ${{ product.price }} 
             </v-col>
           </v-row>
   
@@ -49,7 +57,8 @@ import ProductService from '@/services/ProductService';
     data() {
     return {
        payload: "",
-       size: 1
+       size: 1,
+       sortBy: "id"
     }},
     methods: {
       changeSize(){
@@ -63,11 +72,11 @@ import ProductService from '@/services/ProductService';
       link(id){
       return "product?id="+id;
     },
-    changePage(page,size=1){
+    changePage(page,size=1,sortBy="id"){
       const urlParams = new URLSearchParams(window.location.search);
       console.log(urlParams.has('search'));
       console.log(urlParams.get('search'));
-      ProductService.searchProducts(urlParams.get('search'),page,size)
+      ProductService.searchProducts(urlParams.get('search'),page,size,sortBy)
         .then(allProducts => this.payload = allProducts)
         console.log("this is the list")
         console.log(this.payload)
@@ -85,6 +94,9 @@ import ProductService from '@/services/ProductService';
   watch: {
     size: function () {
       this.changePage(0,this.size)
+    },
+    sortBy: function () {
+      this.changePage(0,this.size,this.sortBy)
     }
   }
    

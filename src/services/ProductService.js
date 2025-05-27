@@ -24,8 +24,9 @@ class ProductService{
       }
       )
   }
-    searchProducts(x,page=0,size=1){
-      return  axios.get(Util.urlAPI()+"/search/"+x+"?page="+page+"&size="+size,{ headers: authHeader() })
+    searchProducts(x,page=0,size=1,sortBy="id"){
+      
+      return  axios.get(Util.urlAPI()+"/search/"+x+"?page="+page+"&size="+size+"&sortBy="+sortBy,{ headers: authHeader() })
       .then(res=> {
         console.log(res.data)
         return res.data
