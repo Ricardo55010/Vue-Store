@@ -1,5 +1,7 @@
   <template>
+    <v-select  v-model="size" :items="[1,2,3]">
 
+    </v-select>
     <div>
       
       <v-btn color="blue-grey-darken-4" @click="changePage(page-1)" v-for="page in payload.totalPages" :key="page">{{ page }}</v-btn>
@@ -46,10 +48,14 @@ import ProductService from '@/services/ProductService';
     },
     data() {
     return {
-       payload: ""
+       payload: "",
+       size: 1
     }},
     methods: {
-      image(product){
+      changeSize(){
+        alert("hola")
+      }
+      ,image(product){
 
       
       return "data:image/jpeg;base64," + product.image
@@ -57,11 +63,11 @@ import ProductService from '@/services/ProductService';
       link(id){
       return "product?id="+id;
     },
-    changePage(page){
+    changePage(page,size=1){
       const urlParams = new URLSearchParams(window.location.search);
       console.log(urlParams.has('search'));
       console.log(urlParams.get('search'));
-      ProductService.searchProducts(urlParams.get('search'),page)
+      ProductService.searchProducts(urlParams.get('search'),page,size)
         .then(allProducts => this.payload = allProducts)
         console.log("this is the list")
         console.log(this.payload)
@@ -75,6 +81,11 @@ import ProductService from '@/services/ProductService';
         .then(allProducts => this.payload = allProducts)
         console.log("this is the list")
         console.log(this.payload)
+  },
+  watch: {
+    size: function () {
+      this.changePage(0,this.size)
+    }
   }
    
   }
