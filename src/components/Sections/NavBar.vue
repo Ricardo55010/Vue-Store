@@ -44,7 +44,8 @@
               <v-list-item-subtitle>{{element.amount}}</v-list-item-subtitle>
               </v-col>
               <v-col>
-               <v-icon icon="mdi-gift"></v-icon>
+               <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
+               <v-img v-if="element.image" :src="element.image" alt="product image" width="100" height="100" />
               </v-col>
           </v-row>
           
@@ -128,6 +129,11 @@
         this.$router.push('/login')
         location.reload(true);
       },
+      image(newProduct){
+
+      
+      return "data:image/jpeg;base64," + newProduct.image
+    },
 
       login() {
         this.$router.push('/login')

@@ -1,10 +1,13 @@
   <template>
-    <v-select  v-model="size" :items="[1,2,3]">
+    <v-row>
+      <v-select width="100" label="Size" item-color="blue-grey-darken-4" v-model="size" :items="[1,2,3]">
 
-    </v-select>
-    <v-select  v-model="sortBy" :items="['id','name','price','quantity']">
+      </v-select>
+      <v-select width="100" label="Order by" v-model="sortBy" :items="['id','name','price','quantity']">
+      
+      </v-select>
+    </v-row>
 
-    </v-select>
     <div>
       
       <v-btn color="blue-grey-darken-4" @click="changePage(page-1)" v-for="page in payload.totalPages" :key="page">{{ page }}</v-btn>
@@ -93,7 +96,7 @@ import ProductService from '@/services/ProductService';
   },
   watch: {
     size: function () {
-      this.changePage(0,this.size)
+      this.changePage(0,this.size,this.sortBy)
     },
     sortBy: function () {
       this.changePage(0,this.size,this.sortBy)
