@@ -5,6 +5,7 @@
       </v-carousel-item>
       <v-carousel-item  cover="true" v-for="product in products" v-bind:key="product.id" color="grey-darken-4" rounded="lg">
         {{product.name}}
+        <v-img :src="image(product)" alt="product image" />
       </v-carousel-item>
     </v-carousel>
   </template>
@@ -19,6 +20,11 @@
     return {
        
     }},
+    methods: {
+      image(product){
+        return "data:image/jpeg;base64," + product.image
+      }
+    },
     computed:{
       products: {
         get () {
