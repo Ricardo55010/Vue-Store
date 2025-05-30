@@ -9,18 +9,20 @@ class OrderService{
           return res.data
         }).catch( error=>{
           Util.handleResponse(error)
+          return error
         }
         )
     }
 
 
      postOrder(Order){
-        axios.post(Util.urlAPI()+"/Order",Order,{ headers: authHeader() })
+        return axios.post(Util.urlAPI()+"/Order",Order,{ headers: authHeader() })
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }

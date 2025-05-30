@@ -40,7 +40,8 @@
       ></v-select>
         </v-col>
         <v-col>
-                
+               {{ category }} 
+               {{ newProduct.categories }}
       <v-btn @click="addCategory(category)" color="deep-orange-accent-4" > add category</v-btn>
         </v-col>
       </v-row>
@@ -55,8 +56,6 @@
     
   </form>
   </v-card>
-{{ newProduct }}
-
 </template>
 <script>
 import ProductService from '@/services/ProductService';
@@ -70,13 +69,18 @@ export default {
        image: '',
        items: [
         {id: 1, 
-         name: "Tecnologia",
-         //description: "Lo mas actual"
+         name: "Technology",
+         description: "Geek stuff"
         },
         {id: 2, 
-         name: "Deportes",
-         //description: "Lo mas cool"
-        }],
+         name: "Sports",
+         description: "Fit life"
+        },
+        {id: 3, 
+         name: "Games",
+         description: "Let it play!"
+        }
+      ],
        category: {
         id: "",
         name: "",

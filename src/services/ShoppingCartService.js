@@ -10,29 +10,32 @@ class ShoppingProductService{
           return res.data
         }).catch( error=>{
           Util.handleResponse(error)
+          return error
         }
         )
     }
 
 
      postShopping(ShoppingCart){
-        axios.post(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
+        return axios.post(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
         .then(res=> {
          console.log("Created" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }
 
      patchShopping(ShoppingCart){
-      axios.patch(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
+      return axios.patch(Util.urlAPI()+"/ShoppingCart",ShoppingCart,{ headers: authHeader() })
       .then(res=> {
          console.log("Updated" + res.data)
          return res.data
        }).catch( error=>{
         Util.handleResponse(error)
+        return error
        }
        )
      }

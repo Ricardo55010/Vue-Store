@@ -144,11 +144,16 @@
           return
         }
         this.order.productList = this.$store.state.shoppingCart.productList
-        await OrderService.postOrder(this.order)
+        const res = await OrderService.postOrder(this.order)
         this.shoppingCart = this.$store.state.shoppingCart
         console.log(this.shoppingCart)
         this.shoppingCart.productList = []
         await ShoppingCartService.patchShopping(this.shoppingCart);
+        if(res.status== 404){
+        this.$store.commit('setSnackbar',"Not amount available")
+          setTimeout(() => location.reload(true), 2000);
+          return 
+        }
         this.$store.commit('setSnackbar',"Order Created");
         setTimeout(() => location.reload(true), 2000);
       }

@@ -25,6 +25,9 @@
                       <v-img v-if="product.image" :src="image(product)" alt="product image" width="100" height="100" />
                     <v-spacer></v-spacer>
                   </v-row>
+                  <v-row class="justify-center">
+                    Quantity: {{ product.quantity }}
+                  </v-row>
 
                 </v-card-text>
 
