@@ -5,6 +5,8 @@
       <span class="font-weight-black">Bought by: {{order.user.name}}</span>
       <v-spacer></v-spacer>
       <span class="font-weight-black">Bought : {{order.dateTime}}</span>
+      <v-spacer></v-spacer>
+      <span class="font-weight-black">Total: ${{order.total}} </span>
     </template>
         <v-card-text class="bg-surface-light pt-4">
           <v-row>

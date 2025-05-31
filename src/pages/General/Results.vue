@@ -19,26 +19,24 @@
       </template>
           <v-card-text class="bg-surface-light pt-4">
             <v-row>
-              <v-col   cols="12" md="6" lg="4" xl="3">
+            <v-col   cols="12" md="2" lg="2" xl="2">
                 <v-btn v-if="!product.image"  icon="mdi-image"></v-btn>
                 <v-img v-if="product.image" :src="image(product)" alt="product image" width="100" height="100" />
             </v-col>
-            <v-spacer></v-spacer>
-            <v-col   cols="12" md="6" lg="4" xl="3">
-                {{ product.description }}
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-col   cols="12" md="6" lg="4" xl="3">
-                Amount: {{ product.quantity }} 
-                
-                {{ product.categories[0].name }}
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-col   cols="12" md="6" lg="4" xl="3">
-                price: ${{ product.price }} 
+            <v-col class="align-center"   cols="12" md="2" lg="2" xl="2">
+                <p >{{ product.description }}</p>
             </v-col>
           </v-row>
-  
+            <v-spacer></v-spacer>
+          <v-row class="justify-center">
+                <p class="font-weight-black">Amount:  </p> {{ product.quantity }}
+                
+                {{ product.categories[0].name }}
+ 
+          </v-row>
+          <v-row class="justify-center">
+                <p class="font-weight-black" >price: </p> ${{ product.price }} 
+          </v-row>
           </v-card-text>
           
           

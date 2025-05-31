@@ -17,6 +17,7 @@
           <v-text-field
         label="Email"
         v-model="User.email"
+        placeholder="user@example.com"
         required
       ></v-text-field>
         </v-col>
@@ -28,9 +29,10 @@
       <v-col>
       <v-text-field
 
-        label="******"
+        label="password"
         required
         type="password"
+        placeholder="*****"
         v-model="User.password"
         ></v-text-field>
       </v-col>

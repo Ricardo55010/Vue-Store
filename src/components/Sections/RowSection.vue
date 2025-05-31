@@ -26,7 +26,10 @@
                     <v-spacer></v-spacer>
                   </v-row>
                   <v-row class="justify-center">
-                    Quantity: {{ product.quantity }}
+                    <p class="font-weight-black">Quantity: {{ product.quantity }}</p>
+                  </v-row>
+                  <v-row class="justify-center">
+                    <p class="font-weight-black"> Price: {{ product.price }}</p>
                   </v-row>
 
                 </v-card-text>

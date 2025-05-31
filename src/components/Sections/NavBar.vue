@@ -14,6 +14,7 @@
         <v-text-field hide-details="auto"
         @keydown.enter.prevent="this.$router.push('/results?search='+ search)"
         label="Search..."
+        placeholder="What are you looking for..."
         v-model="search"></v-text-field>
         <v-spacer></v-spacer>
         <v-menu
