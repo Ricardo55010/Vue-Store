@@ -27,6 +27,16 @@
           v-bind="props"
           icon="mdi-shopping"
         >
+    
+          
+        </v-btn>
+        <v-btn
+          v-if="user!=null"
+          color="white"
+          v-bind="props"
+          icon="mdi-bell"
+        >
+    
           
         </v-btn>
       </template>

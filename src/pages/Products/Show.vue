@@ -50,10 +50,10 @@
 
       </v-row>
 
-      <v-btn v-if="user!=null" @click="addComment" color="teal-darken-4"> Add Comment</v-btn>
+      <v-btn v-if="user!=null" @click="addComment" color="teal-darken-4"> Add Comment <v-icon icon="mdi-comment-plus"></v-icon></v-btn>
       <v-btn v-if="user==null" @click="login" color="teal-darken-4"> Want to share your thoughts, login!</v-btn>
       <v-text-field v-model="wantedByUser" type="number" label="Wanted"></v-text-field>
-      <v-btn v-if="user!=null" @click="addToShoppingCar()" color="deep-orange-accent-4" > add to car</v-btn>
+      <v-btn v-if="user!=null" @click="addToShoppingCar()" color="deep-orange-accent-4" > add to ca  <v-icon icon="mdi-cart-plus"></v-icon></v-btn>
   </form>
   </v-card>
 
