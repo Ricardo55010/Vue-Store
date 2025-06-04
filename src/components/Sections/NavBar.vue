@@ -1,4 +1,5 @@
 <template>
+  {{ preResults.content }}
           <v-app-bar app color="grey-darken-4" >
         <v-btn 
             icon="mdi-menu"
@@ -11,11 +12,38 @@
             @click.stop="">
             
         </v-btn>
-        <v-text-field hide-details="auto"
+
+        <v-menu open-on-hover>
+            <template v-slot:activator="{ props }">
+                 <v-text-field hide-details="auto"
         @keydown.enter.prevent="this.$router.push('/results?search='+ search)"
         label="Search..."
         placeholder="What are you looking for..."
-        v-model="search"></v-text-field>
+        v-model="search"
+        v-bind="props"></v-text-field>
+            </template>
+            <v-list>
+        
+        <v-list-item>
+          
+          
+          <v-list-item-title> Results:</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-for="element in preResults.content" v-bind:key="element.id" :href="link(element.id)">
+          <v-row >
+              <v-col>
+              <v-list-item-title>{{element.name}}</v-list-item-title>
+              <v-list-item-subtitle>{{element.amount}}</v-list-item-subtitle>
+              </v-col>
+              <v-col>
+               <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
+               <v-img v-if="element.image" :src="image(element)" alt="product image" width="100" height="100" />
+              </v-col>
+          </v-row>
+        </v-list-item>
+      </v-list>
+        </v-menu>
+        
         <v-spacer></v-spacer>
         <v-menu
       open-on-hover
@@ -30,15 +58,7 @@
     
           
         </v-btn>
-        <v-btn
-          v-if="user!=null"
-          color="white"
-          v-bind="props"
-          icon="mdi-bell"
-        >
-    
-          
-        </v-btn>
+
       </template>
 
       <v-list>
@@ -56,7 +76,50 @@
               </v-col>
               <v-col>
                <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
-               <v-img v-if="element.image" :src="element.image" alt="product image" width="100" height="100" />
+               <v-img v-if="element.image" :src="image(element.image)" alt="product image" width="100" height="100" />
+              </v-col>
+          </v-row>
+          
+          
+        </v-list-item>
+        <v-list-item
+        >
+        <v-btn @click="createOrder">Create order</v-btn>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    <v-menu
+      open-on-hover
+    >
+      <template v-slot:activator="{ props }">
+        <v-btn
+          v-if="user!=null"
+          color="white"
+          v-bind="props"
+          icon="mdi-bell"
+        >
+    
+          
+        </v-btn>
+
+      </template>
+
+      <v-list>
+        
+        <v-list-item>
+          
+          Notifications:
+          <v-list-item-title> {{user.name}}</v-list-item-title>
+        </v-list-item>
+        <v-list-item v-for="element in shoppingCart.productList" v-bind:key="element.id">
+          <v-row>
+              <v-col>
+              <v-list-item-title>{{element.product.name}}</v-list-item-title>
+              <v-list-item-subtitle>{{element.amount}}</v-list-item-subtitle>
+              </v-col>
+              <v-col>
+               <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
+               <v-img v-if="element.image" :src="image(element)" alt="product image" width="100" height="100" />
               </v-col>
           </v-row>
           
@@ -86,15 +149,15 @@
   
   <script>
   import OrderService from '@/services/OrderService';
+import ProductService from '@/services/ProductService';
   import ShoppingCartService from '@/services/ShoppingCartService'
   export default {
     name: 'NavBarSection',
-    props: {
 
-    },
     data() {
     return {
        search: "",
+       preResults: [],
        order:{
         id:0,
         productList:[],
@@ -107,6 +170,7 @@
       result(){
           return "results"+"?"+"search="+this.search
       },
+
       shoppingCart: {
         get () {
           return this.$store.state.shoppingCart
@@ -140,6 +204,9 @@
         this.$router.push('/login')
         location.reload(true);
       },
+            link(id){
+      return "product?id="+id;
+    },
       image(newProduct){
 
       
@@ -168,6 +235,13 @@
         this.$store.commit('setSnackbar',"Order Created");
         setTimeout(() => location.reload(true), 2000);
       }
+    },
+      watch: {
+    search: async function () {
+      if (this.search.length > 3) {
+        this.preResults = await ProductService.searchProducts(this.search);
+      } 
     }
+      }
   }
   </script>

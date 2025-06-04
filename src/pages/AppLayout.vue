@@ -60,7 +60,6 @@ export default {
             });
         }, function(error) {
             console.log(error);
-            
             alert("no")
         });
     },
