@@ -1,14 +1,14 @@
 <template>
+  {{ body }}
     <v-app  >
       <NavBar></NavBar>
       <SideBar></SideBar>
-      <div id="notifications">s</div>
+      <div id="notifications"></div>
         <v-card height="100%" color="light-blue-lighten-5">
         <v-main >
           
           <div  class="d-flex justify-center align-center">
             <v-container>
-              {{ order }}
                 <router-view></router-view>              
             </v-container>
           </div>
@@ -41,22 +41,21 @@ export default {
   },
   data() {
     return {
+      notifications: [],
 
-       }
+    }
        
        
     },
     mounted(){
       var socket = new SockJS('http://localhost:8080/websocket');
         var stompClient = Stomp.over(socket)
-        stompClient.connect({}, function(frame) {
+        stompClient.connect({}, (frame) => {
           alert("yes")
             console.log(frame);
-            stompClient.subscribe('/topic/notifications', function(notification) {
-                var notifications = document.getElementById('notifications');
-                var message = document.createElement('p');
-                message.appendChild(document.createTextNode(notification.body));
-                notifications.appendChild(message);
+            stompClient.subscribe('/topic/notifications', (notification) =>{
+                this.notifications.push(notification.body)
+                this.$store.commit('setNotifications',this.notifications)
             });
         }, function(error) {
             console.log(error);

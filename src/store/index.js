@@ -5,6 +5,7 @@ const store = createStore({
   state () {
     return {
       count: 0,
+      notifications: [],
       categories: [],
       products:[],
       user:JSON.parse(localStorage.getItem('user')),
@@ -44,6 +45,10 @@ const store = createStore({
     },
     setDrawer(state,drawerToSet){
       state.drawer = drawerToSet
+    },
+    setNotifications(state,notificationsToSet){
+      state.notifications = notificationsToSet
+      alert("you are in store")
     }
 
     

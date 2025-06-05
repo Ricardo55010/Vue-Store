@@ -24,11 +24,6 @@
             </template>
             <v-list>
         
-        <v-list-item>
-          
-          
-          <v-list-item-title> Results:</v-list-item-title>
-        </v-list-item>
         <v-list-item v-for="element in preResults.content" v-bind:key="element.id" :href="link(element.id)">
           <v-row >
               <v-col>
@@ -37,7 +32,7 @@
               </v-col>
               <v-col>
                <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
-               <v-img v-if="element.image" :src="image(element)" alt="product image" width="100" height="100" />
+               <v-img v-if="element.image" :src="image(element)" alt="product image"  width="100" height="100" />
               </v-col>
           </v-row>
         </v-list-item>
@@ -93,7 +88,17 @@
     >
       <template v-slot:activator="{ props }">
         <v-btn
-          v-if="user!=null"
+          v-if="user!=null && notifications.length>0"
+          color="white"
+          v-bind="props"
+          icon="mdi-bell-ring"
+        >
+    
+          
+        </v-btn>
+
+        <v-btn
+          v-if="user!=null && notifications.length<1"
           color="white"
           v-bind="props"
           icon="mdi-bell"
@@ -101,7 +106,7 @@
     
           
         </v-btn>
-
+        <p class="pr-3">{{ notifications.length }}</p>
       </template>
 
       <v-list>
@@ -111,23 +116,19 @@
           Notifications:
           <v-list-item-title> {{user.name}}</v-list-item-title>
         </v-list-item>
-        <v-list-item v-for="element in shoppingCart.productList" v-bind:key="element.id">
+        <v-list-item v-for="element in notifications" v-bind:key="element.id">
           <v-row>
               <v-col>
-              <v-list-item-title>{{element.product.name}}</v-list-item-title>
+              <v-list-item-title>{{element}}</v-list-item-title>
               <v-list-item-subtitle>{{element.amount}}</v-list-item-subtitle>
               </v-col>
               <v-col>
-               <v-icon v-if="!element.image" icon="mdi-gift"></v-icon>
+               <v-icon v-if="!element.image" icon="mdi-check"></v-icon>
                <v-img v-if="element.image" :src="image(element)" alt="product image" width="100" height="100" />
               </v-col>
           </v-row>
           
           
-        </v-list-item>
-        <v-list-item
-        >
-        <v-btn @click="createOrder">Create order</v-btn>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -189,6 +190,14 @@ import ProductService from '@/services/ProductService';
     }
       
     },
+    notifications: {
+      get(){
+        return this.$store.state.notifications
+      },
+      set(value){
+        this.$store.commit('setNotifications', value)
+      }
+    }
    },
    mounted(){
       if(localStorage.getItem('user') != null)
@@ -233,13 +242,14 @@ import ProductService from '@/services/ProductService';
           return 
         }
         this.$store.commit('setSnackbar',"Order Created");
-        setTimeout(() => location.reload(true), 2000);
+       // setTimeout(() => location.reload(true), 2000);
       }
     },
       watch: {
     search: async function () {
+      this.preResults = [];
       if (this.search.length > 3) {
-        this.preResults = await ProductService.searchProducts(this.search);
+        this.preResults = await ProductService.searchProducts(this.search,0,3,"name");
       } 
     }
       }
