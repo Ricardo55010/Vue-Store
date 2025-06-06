@@ -101,8 +101,13 @@ import UserService from '@/services/UserService';
           this.User = await UserService.getUser()
           console.log("logged in");
           localStorage.setItem('user',JSON.stringify(this.User));
-          this.$router.push('/home');
-          location.reload(true);
+
+          this.$store.commit('setLoading',true);
+          setTimeout(() => {this.$store.commit('setLoading',false)
+            this.$router.push('/home');
+            location.reload(true);
+          }, 2000);
+          
           
         },
         register(){

@@ -5,6 +5,7 @@ const store = createStore({
   state () {
     return {
       count: 0,
+      loading: false,
       notifications: [],
       categories: [],
       products:[],
@@ -49,6 +50,9 @@ const store = createStore({
     setNotifications(state,notificationsToSet){
       state.notifications = notificationsToSet
       alert("you are in store")
+    },
+    setLoading(state,loadingToSet){
+      state.loading = loadingToSet
     }
 
     

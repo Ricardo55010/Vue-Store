@@ -8,7 +8,15 @@
         <v-main >
           
           <div  class="d-flex justify-center align-center">
-            <v-container>
+            <v-container>    <v-progress-circular
+              v-if="loading==true"
+      indeterminate
+      color="green"
+      size="50"
+      style="z-index: 100;"
+      class="position-absolute"
+    ></v-progress-circular>
+
                 <router-view></router-view>              
             </v-container>
           </div>
@@ -63,7 +71,14 @@ export default {
         });
     },
     computed: {
-
+      loading:{
+        get(){
+          return this.$store.state.loading
+        },
+        set(value){
+          this.$store.commit('setLoading',value)
+        }
+      }
   },
     methods: {
       
