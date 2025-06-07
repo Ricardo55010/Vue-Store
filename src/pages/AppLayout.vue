@@ -14,7 +14,7 @@
               <div class="d-flex justify-center" >
                   <div v-if="loading==true" style="z-index: 100;"
                   class="position-absolute">
-                  <v-card color="blue-grey-darken-4">
+                  <v-card color="blue-grey-darken-4  pl-5 pr-5 pt-3 pb-3">
                       <v-progress-circular
                       indeterminate
                       color="green"
