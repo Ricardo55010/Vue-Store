@@ -67,7 +67,6 @@ export default {
       var socket = new SockJS('http://localhost:8080/websocket');
         var stompClient = Stomp.over(socket)
         stompClient.connect({}, (frame) => {
-          alert("yes")
             console.log(frame);
             stompClient.subscribe('/topic/notifications', (notification) =>{
                 this.notifications.push(notification.body)
@@ -75,7 +74,6 @@ export default {
             });
         }, function(error) {
             console.log(error);
-            alert("no")
         });
     },
     computed: {

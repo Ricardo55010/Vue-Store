@@ -63,7 +63,6 @@ import ProductService from '@/services/ProductService';
     }},
     methods: {
       changeSize(){
-        alert("hola")
       }
       ,image(product){
 

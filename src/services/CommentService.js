@@ -28,15 +28,11 @@ class ProductService{
      }
 
      addSubComment(subcomment,id){
-      alert(id)
         return axios.patch(Util.urlAPI()+"/comment/subComment/"+id,subcomment,{ headers: authHeader() })
         .then(res=> {
-         alert(res.status)
          console.log("SubCommentCreated" + res.data)
          return res.data
        }).catch( error=>{
-        alert("caiste en error papu :v")
-        alert(error.status)
         Util.handleResponse(error)
         return error
        }

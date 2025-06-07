@@ -40,7 +40,6 @@ const store = createStore({
       
     },
     setSnackbar(state,msgToSet){
-      alert(msgToSet)
       state.snackbar.status = true
       state.snackbar.text = msgToSet
     },
@@ -49,7 +48,6 @@ const store = createStore({
     },
     setNotifications(state,notificationsToSet){
       state.notifications = notificationsToSet
-      alert("you are in store")
     },
     setLoading(state,loadingToSet){
       state.loading = loadingToSet

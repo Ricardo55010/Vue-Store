@@ -42,18 +42,19 @@
         <v-spacer></v-spacer>
         <v-menu
       open-on-hover
+      v-if="user!=null"
     >
       <template v-slot:activator="{ props }">
         <v-btn
-          v-if="user!=null"
+          
           color="white"
           v-bind="props"
           icon="mdi-shopping"
         >
-    
+
           
         </v-btn>
-
+         <p class="pr-3">{{ shoppingCart.productList.length }}</p>
       </template>
 
       <v-list>
@@ -85,10 +86,11 @@
     </v-menu>
     <v-menu
       open-on-hover
+      v-if="user!=null"
     >
       <template v-slot:activator="{ props }">
         <v-btn
-          v-if="user!=null && notifications.length>0"
+          v-if="notifications.length>0"
           color="white"
           v-bind="props"
           icon="mdi-bell-ring"
@@ -98,7 +100,7 @@
         </v-btn>
 
         <v-btn
-          v-if="user!=null && notifications.length<1"
+          v-if="notifications.length<1"
           color="white"
           v-bind="props"
           icon="mdi-bell"
