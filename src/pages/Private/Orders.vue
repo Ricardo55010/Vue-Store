@@ -22,8 +22,8 @@
                   <v-row>
                     <v-spacer></v-spacer>
                     <v-col   cols="12" md="6" lg="4" xl="3">
-                      <v-btn v-if="!product.image"  icon="mdi-image"></v-btn>
-                      <v-img v-if="product.image" :src="product.image" alt="product image" width="100" height="100" />
+                      <v-btn v-if="!product.product.image"  icon="mdi-image"></v-btn>
+                      <v-img v-if="product.product.image" :src="image(product.product)" alt="product image" width="100" height="100" />
                     </v-col>
                     <v-spacer></v-spacer>
                   </v-row>
