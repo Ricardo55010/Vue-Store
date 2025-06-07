@@ -111,7 +111,10 @@ export default {
         if(res.status != 400){
           this.$store.commit('increment')
           console.log("projects updated: " +this.$store.state.count)
-          setTimeout( () => this.$router.push({ path: '/login'}), 2000);
+          this.$store.commit('setLoading',true);
+          setTimeout( () => {
+            this.$store.commit('setLoading',false);
+            this.$router.push({ path: '/login'})}, 2000);
           this.$store.commit('setSnackbar',"Product updated: " +res.response.data)
         }else{
           this.$store.commit('setSnackbar',"Product not updated: " +res.response.data)

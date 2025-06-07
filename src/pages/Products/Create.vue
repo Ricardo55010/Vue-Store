@@ -120,7 +120,10 @@ export default {
         if(res.status != 400){
           this.$store.commit('increment')
           console.log("projects created: " +this.$store.state.count)
-          setTimeout( () => this.$router.push({ path: '/login'}), 2000);
+          this.$store.commit('setLoading',true);
+          setTimeout( () => {
+            this.$store.commit('setLoading',false);
+            this.$router.push({ path: '/login'})}, 2000);
           this.$store.commit('setSnackbar',"Product created: ")
         }else{
           const propertyNames = Object.keys(res.response.data);
