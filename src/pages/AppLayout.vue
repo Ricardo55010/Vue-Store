@@ -8,15 +8,23 @@
         <v-main >
           
           <div  class="d-flex justify-center align-center">
-            <v-container>    <v-progress-circular
-              v-if="loading==true"
-      indeterminate
-      color="green"
-      size="50"
-      style="z-index: 100;"
-      class="position-absolute"
-    ></v-progress-circular>
 
+            
+            <v-container>   
+              <div class="d-flex justify-center" >
+                  <div v-if="loading==true" style="z-index: 100;"
+                  class="position-absolute">
+                  <v-card color="blue-grey-darken-4">
+                      <v-progress-circular
+                      indeterminate
+                      color="green"
+                      size="150"
+                    ></v-progress-circular>
+                    <v-spacer></v-spacer>
+                    <b>LOADING...</b>
+                  </v-card>                 
+                </div>
+             </div>
                 <router-view></router-view>              
             </v-container>
           </div>
